@@ -1,0 +1,6531 @@
+&GLOBAL
+  PROJECT  System_with_cut_cell_test
+  PRINT_LEVEL MEDIUM
+  RUN_TYPE ENERGY
+  !TRACE TRUE
+  &TIMINGS
+    TIMINGS_LEVEL 1
+    THRESHOLD 2.00000000E-006
+  &END 
+  EXTENDED_FFT_LENGTHS True
+&END GLOBAL
+&FORCE_EVAL
+  METHOD Quickstep
+  &DFT
+    CHARGE 918
+    BASIS_SET_FILE_NAME  BASIS-aug
+    POTENTIAL_FILE_NAME POTENTIAL
+    &MGRID
+      CUTOFF  500
+      REL_CUTOFF  50
+    &END MGRID
+    &QS
+      METHOD GPW
+    &END QS
+    &POISSON
+      PERIODIC NONE
+      PSOLVER MULTIPOLE
+    &END
+    &SCF
+       SCF_GUESS RESTART
+       EPS_SCF 1e-7
+       MAX_SCF 10
+       &OT
+          MINIMIZER CG
+          PRECONDITIONER FULL_SINGLE_INVERSE
+       &END OT
+       &OUTER_SCF
+          EPS_SCF 1e-7
+          MAX_SCF 50
+       &END OUTER_SCF
+      &PRINT
+        &RESTART ON
+        &END
+      &END
+      &MIXING
+          METHOD BROYDEN_MIXING
+          ALPHA 0.1
+          BETA 1.5
+          NBROYDEN 8
+      &END
+    &END SCF
+	&XC
+	    &XC_FUNCTIONAL PBE
+	    &END XC_FUNCTIONAL
+      &WF_CORRELATION
+        &RI_RPA
+          QUADRATURE_POINTS 100
+          &GW
+           NPARAM_PADE 16
+           SELF_CONSISTENCY EVGW0
+           &BSE
+             TDA TDA+ABBA
+             NUM_PRINT_EXC 50
+		NUM_PRINT_EXC_DESCR -1
+             ENERGY_CUTOFF_EMPTY 20
+             ENERGY_CUTOFF_OCC 20
+             &BSE_SPECTRUM 
+              ETA_LIST 0.01, 0.05, 0.1, 0.2, 0.25
+              FREQUENCY_STEP_SIZE 0.1
+             &END BSE_SPECTRUM
+           &END BSE
+          &END GW
+        &END RI_RPA
+      &END
+  &END XC
+  &END DFT
+  &SUBSYS
+    &CELL
+      ABC 84 84 84
+      PERIODIC NONE
+    &END CELL
+    &TOPOLOGY
+      &CENTER_COORDINATES
+        CENTER_POINT  0.17343699999999984 6.268078000000001 -5.962776
+      &END
+      COORD_FILE_NAME 6YMU_E_new_cut_script_box_length_10_dis_to_counter_29_vacuum_3.XYZ
+      COORD_FILE_FORMAT XYZ
+    &END TOPOLOGY
+    &KIND H
+      BASIS_SET ORB    aug-SZV-MOLOPT-GTH
+      BASIS_SET RI_AUX RI_aug-SZV-MOLOPT-GTH_N_RI_010_s_p_d_f_g_h_i_4_2_0_0_0_0_0_error_1.4e-06
+      POTENTIAL GTH-PBE-q1
+    &END KIND
+    &KIND C
+      BASIS_SET ORB    aug-SZV-MOLOPT-GTH
+      BASIS_SET RI_AUX RI_aug-SZV-MOLOPT-GTH_N_RI_030_s_p_d_f_g_h_i_4_3_2_1_0_0_0_error_3.0e-05
+      POTENTIAL GTH-PBE-q4
+    &END KIND
+    &KIND N
+      BASIS_SET ORB    aug-SZV-MOLOPT-GTH
+      BASIS_SET RI_AUX RI_aug-SZV-MOLOPT-GTH_N_RI_028_s_p_d_f_g_h_i_5_2_2_1_0_0_0_error_7.0e-05
+      POTENTIAL GTH-PBE-q5
+    &END KIND
+    &KIND 0partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.38770000000000004
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 1partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5713
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 2partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8016
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 3partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 4partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0518
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 5partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 6partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 7partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9077999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 8partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 9partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0361
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 10partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 11partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9663
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 12partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 13partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 14partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.1825
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 15partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 16partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9177
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 17partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9397
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 18partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9397
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 19partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9397
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 20partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.3479
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 21partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.24
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 22partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.2659
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 23partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5894
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 24partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0094
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 25partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9813
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 26partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0479
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 27partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0143
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 28partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7253000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 29partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8573999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 30partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8865
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 31partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9379
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 32partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9897
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 33partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9897
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 34partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9638
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 35partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9638
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 36partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.3479
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 37partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.2637
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 38partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.2659
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 39partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5894
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 40partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0007
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 41partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.961
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 42partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9514
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 43partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5295
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 44partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.19240000000000002
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 45partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.8627
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 46partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.8627
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 47partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7253000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 48partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.844
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 49partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.6544
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 50partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.5522
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 51partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.5522
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 52partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9313
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 53partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9313
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 54partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9715
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 55partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9715
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 56partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9673
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 57partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9673
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 58partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 59partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0597
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 60partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 61partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 62partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8697
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 63partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.043
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 64partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 65partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9764
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 66partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9764
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 67partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9813
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 68partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0597
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 69partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.043
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 70partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.066
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 71partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9131
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 72partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9814
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 73partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9814
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 74partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9117999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 75partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9764
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 76partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9764
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 77partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 78partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9397
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 79partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 80partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 81partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 82partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.1102
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 83partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0361
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 84partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 85partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0252
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 86partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 87partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 88partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9302
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 89partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9302
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 90partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.3479
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 91partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.24
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 92partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.2659
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 93partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5894
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 94partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0094
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 95partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9813
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 96partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7253000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 97partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8573999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 98partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9379
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 99partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9897
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 100partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9638
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 101partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 102partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 103partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 104partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0014
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 105partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 106partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 107partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0152
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 108partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0011
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 109partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.1905999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 110partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.1905999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 111partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 112partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9124
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 113partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8301000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 114partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8301000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 115partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9705
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 116partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9705
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 117partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 118partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0249
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 119partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 120partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 121partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7883
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 122partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.6545999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 123partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 124partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 125partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.5725
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 126partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9648
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 127partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9648
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 128partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5163
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 129partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9603
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 130partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.46340000000000003
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 131partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5819
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 132partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7063999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 133partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8895
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 134partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 135partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0597
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 136partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 137partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 138partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.043
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 139partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.066
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 140partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 141partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9814
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 142partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9814
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 143partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9764
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 144partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9764
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 145partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 146partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0252
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 147partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 148partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 149partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 150partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9302
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 151partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9302
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 152partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 153partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0597
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 154partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 155partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 156partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8697
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 157partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.043
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 158partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.3204
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 159partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.066
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 160partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 161partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9131
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 162partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9814
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 163partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9814
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 164partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9117999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 165partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9117999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 166partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9117999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 167partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9764
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 168partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9764
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 169partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9813
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 170partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5163
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 171partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9619
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 172partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.46340000000000003
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 173partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5819
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 174partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0303
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 175partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.2006
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 176partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.8014000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 177partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.8014000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 178partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7063999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 179partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.912
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 180partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0122
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 181partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0122
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 182partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5163
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 183partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9603
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 184partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.46340000000000003
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 185partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5819
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 186partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.944
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 187partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9864
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 188partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.1946
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 189partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.8188
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 190partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.8188
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 191partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7063999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 192partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8895
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 193partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0425
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 194partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0425
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 195partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0173
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 196partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0173
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 197partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 198partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0518
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 199partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 200partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 201partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.1102
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 202partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.6469
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 203partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4121000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 204partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4121000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 205partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 206partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9077999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 207partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 208partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 209partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 210partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 211partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 212partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 213partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0361
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 214partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9543
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 215partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9543
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 216partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 217partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0875
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 218partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 219partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9031
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 220partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9209
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 221partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9209
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 222partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0597
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 223partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 224partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8697
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 225partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.3204
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 226partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9131
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 227partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9814
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 228partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9117999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 229partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9117999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 230partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9117999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 231partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9813
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 232partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5163
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 233partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9619
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 234partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.46340000000000003
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 235partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5819
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 236partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0303
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 237partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.2006
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 238partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.8014000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 239partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.8014000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 240partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7063999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 241partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.912
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 242partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0122
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 243partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0122
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 244partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 245partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0597
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 246partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 247partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 248partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8697
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 249partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.043
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 250partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.3204
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 251partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.066
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 252partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 253partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9131
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 254partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9814
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 255partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9814
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 256partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9814
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 257partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9117999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 258partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9117999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 259partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9117999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 260partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9764
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 261partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9764
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 262partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9813
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 263partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.2548
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 264partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0266
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 265partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.4104
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 266partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5748
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 267partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.007
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 268partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9811
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 269partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9808
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 270partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9359
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 271partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9609
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 272partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9609
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 273partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9787
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 274partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9787
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 275partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9747
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 276partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9747
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 277partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 278partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0024
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 279partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 280partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9022
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 281partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9705
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 282partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.6761
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 283partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 284partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.5898
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 285partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9957
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 286partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.8014000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 287partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0122
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 288partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0122
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 289partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9813
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 290partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0479
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 291partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0143
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 292partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.3854
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 293partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.6599999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 294partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.6599999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 295partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.6599999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 296partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8865
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 297partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9379
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 298partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9897
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 299partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9897
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 300partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9209
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 301partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.8188
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 302partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.8188
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 303partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9814
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 304partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.46340000000000003
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 305partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5819
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 306partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.1825
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 307partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9177
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 308partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9397
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 309partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9397
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 310partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 311partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 312partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7015
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 313partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.3192
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 314partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9209
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 315partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9209
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 316partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9209
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 317partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9209
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 318partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0297
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 319partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.3479
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 320partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.2637
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 321partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.2659
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 322partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5894
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 323partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0007
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 324partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.961
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 325partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9514
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 326partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.8627
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 327partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7253000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 328partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.844
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 329partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.5522
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 330partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.5522
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 331partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9313
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 332partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9313
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 333partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9715
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 334partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9673
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 335partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9673
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 336partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.3479
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 337partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.24
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 338partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0094
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 339partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9813
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 340partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0479
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 341partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0143
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 342partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.3854
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 343partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7253000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 344partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8573999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 345partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.6599999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 346partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.6599999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 347partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.6599999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 348partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8865
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 349partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8865
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 350partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9379
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 351partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9379
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 352partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9897
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 353partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9897
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 354partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9638
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 355partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9638
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 356partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7063999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 357partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9209
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 358partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 359partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 360partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 361partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0875
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 362partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 363partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 364partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7015
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 365partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.3192
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 366partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9031
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 367partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9209
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 368partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9209
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 369partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9209
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 370partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9209
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 371partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0297
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 372partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.3479
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 373partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.2637
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 374partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.2659
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 375partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5894
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 376partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0007
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 377partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.961
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 378partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9514
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 379partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5295
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 380partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.19240000000000002
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 381partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.8627
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 382partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.8627
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 383partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7253000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 384partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.844
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 385partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.6544
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 386partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.5522
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 387partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.5522
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 388partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.5522
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 389partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.5522
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 390partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9313
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 391partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9313
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 392partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9715
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 393partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9715
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 394partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9673
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 395partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9673
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 396partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 397partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0518
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 398partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 399partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 400partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.1102
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 401partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4121000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 402partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 403partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9077999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 404partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 405partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 406partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0361
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 407partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5192
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 408partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.2059
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 409partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.258
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 410partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.7930000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 411partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9929
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 412partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9325
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 413partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.18169999999999997
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 414partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.822
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 415partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.822
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 416partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.6945
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 417partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.7930000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 418partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8601
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 419partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0548
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 420partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0548
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 421partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0078
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 422partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0078
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 423partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9302
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 424partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0007
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 425partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.961
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 426partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9514
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 427partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5295
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 428partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.19240000000000002
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 429partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.8627
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 430partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.5522
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 431partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.5522
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 432partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.5522
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 433partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9313
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 434partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9313
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 435partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9715
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 436partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9715
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 437partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9673
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 438partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9673
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 439partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9209
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 440partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.3119
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 441partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8067
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 442partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 443partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0252
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 444partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 445partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 446partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 447partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9302
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 448partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9302
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 449partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 450partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 451partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 452partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 453partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 454partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 455partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9857
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 456partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 457partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 458partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.2041
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 459partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.28700000000000003
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 460partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5931
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 461partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 462partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8952
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 463partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9203
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 464partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9203
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 465partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5163
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 466partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9603
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 467partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.46340000000000003
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 468partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5819
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 469partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.944
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 470partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7063999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 471partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8895
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 472partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0173
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 473partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 474partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0875
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 475partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 476partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 477partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7015
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 478partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.3192
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 479partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 480partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9031
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 481partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9209
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 482partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9209
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 483partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9209
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 484partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0297
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 485partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9857
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 486partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 487partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 488partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 489partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0252
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 490partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 491partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 492partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 493partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9302
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 494partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9302
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 495partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 496partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0014
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 497partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 498partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 499partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0152
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 500partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0011
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 501partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.1905999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 502partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.1905999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 503partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.2341
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 504partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.2341
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 505partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.6774
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 506partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 507partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9124
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 508partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8344
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 509partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8301000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 510partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8301000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 511partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9705
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 512partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9705
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 513partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 514partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0014
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 515partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 516partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 517partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0152
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 518partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0011
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 519partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.1905999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 520partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.1905999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 521partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.2341
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 522partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.2341
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 523partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.6774
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 524partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 525partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9124
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 526partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8344
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 527partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8344
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 528partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8301000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 529partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8301000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 530partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9705
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 531partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9705
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 532partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 533partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0014
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 534partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 535partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 536partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0152
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 537partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0011
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 538partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.1905999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 539partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.1905999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 540partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.2341
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 541partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.2341
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 542partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.6774
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 543partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5579
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 544partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 545partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9124
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 546partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.6008
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 547partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8344
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 548partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8344
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 549partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8301000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 550partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8301000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 551partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9705
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 552partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9705
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 553partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 554partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0024
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 555partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 556partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 557partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9882
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 558partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.1256
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 559partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.1703999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 560partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.1703999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 561partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.1072
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 562partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 563partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9022
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 564partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8703
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 565partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.857
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 566partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.867
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 567partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.3192
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 568partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9209
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 569partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9209
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 570partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9209
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 571partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 572partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.6761
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 573partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8993
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 574partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.5898
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 575partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9358
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 576partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.5725
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 577partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 578partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 579partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0024
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 580partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 581partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 582partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0343
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 583partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9882
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 584partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.1256
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 585partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9022
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 586partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.867
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 587partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.867
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 588partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9705
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 589partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9705
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 590partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 591partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9812
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 592partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 593partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 594partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0462
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 595partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0266
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 596partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.3811
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 597partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8708
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 598partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7943
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 599partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5727
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 600partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 601partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9119
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 602partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.6351
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 603partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8608
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 604partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8853
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 605partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9598
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 606partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9598
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 607partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.2548
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 608partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0266
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 609partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.4104
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 610partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5748
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 611partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9359
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 612partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5163
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 613partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9603
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 614partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.46340000000000003
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 615partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5819
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 616partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.944
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 617partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9864
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 618partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.1946
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 619partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.8188
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 620partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.8188
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 621partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7063999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 622partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8895
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 623partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0425
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 624partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0425
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 625partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0173
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 626partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0173
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 627partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.3479
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 628partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.24
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 629partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.2659
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 630partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5894
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 631partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0094
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 632partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9813
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 633partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0479
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 634partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0143
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 635partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.3854
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 636partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7253000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 637partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8573999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 638partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.6599999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 639partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.6599999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 640partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8865
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 641partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8865
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 642partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9379
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 643partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9379
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 644partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9897
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 645partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9897
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 646partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9638
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 647partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9638
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 648partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 649partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0249
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 650partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 651partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 652partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7883
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 653partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.6545999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 654partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 655partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 656partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.5725
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 657partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9648
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 658partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9648
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 659partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 660partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0249
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 661partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 662partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 663partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7883
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 664partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.6545999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 665partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 666partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 667partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.5725
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 668partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9648
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 669partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9648
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 670partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.3479
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 671partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.24
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 672partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.2659
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 673partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5894
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 674partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0094
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 675partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9813
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 676partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0479
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 677partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0143
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 678partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.3854
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 679partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7253000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 680partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8573999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 681partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.6599999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 682partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.6599999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 683partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.6599999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 684partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9379
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 685partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9897
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 686partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9897
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 687partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9638
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 688partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9638
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 689partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 690partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0597
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 691partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 692partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.5678999999999998
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 693partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.8697
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 694partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.043
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 695partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.3204
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 696partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.066
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 697partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 698partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9131
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 699partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9814
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 700partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9814
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 701partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9814
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 702partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9117999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 703partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9117999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 704partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9117999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 705partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9764
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 706partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9764
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 707partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9813
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 708partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.4157
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 709partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0252
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 710partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.40269999999999995
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 711partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7281
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 712partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9302
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 713partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9302
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 714partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.3479
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 715partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.0007
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 716partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9514
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 717partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7253000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 718partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9313
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 719partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9313
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 720partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9673
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 721partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9673
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 722partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7253000000000001
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 723partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.6599999999999999
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 724partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9379
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 725partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9638
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 726partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 727partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 728partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 729partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 730partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 731partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 732partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 733partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 734partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 735partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 736partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 737partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 738partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 739partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 740partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 741partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 742partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 743partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 744partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 745partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 746partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 747partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 748partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 749partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 750partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 751partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 752partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 753partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 754partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 755partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 756partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 757partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 758partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 759partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 760partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 761partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 762partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 763partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 764partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 765partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 766partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 767partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 768partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 769partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 770partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 771partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 772partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 773partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 774partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 775partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 776partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 777partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 778partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 779partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 780partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 781partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 782partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 783partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 784partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 785partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 786partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 787partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 788partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 789partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 790partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 791partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 792partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 793partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 794partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 795partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 796partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 797partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 798partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 799partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 800partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 801partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 802partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 803partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 804partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 805partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 806partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 807partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 808partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 809partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 810partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 811partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 812partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 813partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 814partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 815partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 816partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 817partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 818partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 819partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 820partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 821partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 822partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 823partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 824partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 825partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 826partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 827partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 828partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 829partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 830partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 831partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 832partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 833partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 834partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 835partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 836partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 837partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 838partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 839partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 840partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 841partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 842partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 843partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 844partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 845partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 846partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 847partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 848partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 849partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 850partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 851partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 852partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 853partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 854partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 855partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 856partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 857partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 858partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 859partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 860partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 861partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 862partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 863partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 864partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 865partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 866partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 867partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 868partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 869partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 870partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 871partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 872partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 873partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 874partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 875partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 876partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 877partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 878partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 879partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 880partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 881partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 882partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 883partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 884partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 885partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 886partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 887partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 888partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 889partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 890partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 891partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 892partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 893partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 894partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 895partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 896partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 897partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 898partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 899partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 900partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 901partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 902partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 903partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 904partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 905partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 906partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 907partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 908partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 909partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 910partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.834
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND 911partial_charge
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.583
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND counterx1
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.4252625100666678
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND counterx2
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.9714041566000007
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND countery3
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.6265352055743597
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND countery4
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.7701314610923088
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND counterz5
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -1.1252779431589752
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+    &KIND counterz6
+      ELEMENT H
+      BASIS_SET  NONE
+      BASIS_SET RI_AUX NONE
+      CORE_CORRECTION -0.2713887235076933
+      POTENTIAL GTH-PBE-q1 
+    &END KIND 
+  &END SUBSYS
+&END FORCE_EVAL

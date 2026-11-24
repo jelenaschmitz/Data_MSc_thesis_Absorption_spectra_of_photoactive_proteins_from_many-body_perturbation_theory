@@ -1,0 +1,103 @@
+&GLOBAL
+  PROJECT  Azo
+  PRINT_LEVEL MEDIUM
+  RUN_TYPE ENERGY
+  &TIMINGS
+  TIMINGS_LEVEL 1
+  THRESHOLD 2.00000000E-006
+  &END TIMINGS
+&END GLOBAL
+&FORCE_EVAL
+  METHOD Quickstep
+  &DFT
+    BASIS_SET_FILE_NAME  BASIS-aug
+    POTENTIAL_FILE_NAME POTENTIAL
+    &MGRID
+      CUTOFF  500
+      REL_CUTOFF  50
+    &END MGRID
+    &QS
+      METHOD GAPW
+      EPS_DEFAULT 1.0E-16
+      EPS_PGF_ORB 1.0E-16
+    &END QS
+    &POISSON
+      PERIODIC NONE
+      PSOLVER MULTIPOLE
+    &END
+    &SCF
+       SCF_GUESS RESTART
+       EPS_SCF 1e-7
+       MAX_SCF 10
+       &OT
+          MINIMIZER CG
+          PRECONDITIONER FULL_SINGLE_INVERSE
+       &END OT
+       &OUTER_SCF
+          EPS_SCF 1e-7
+          MAX_SCF 50
+       &END OUTER_SCF
+      &PRINT
+        &RESTART ON
+        &END
+      &END
+      &MIXING
+          METHOD BROYDEN_MIXING
+          ALPHA 0.1
+          BETA 1.5
+          NBROYDEN 8
+      &END
+    &END SCF
+	&XC
+	      &XC_FUNCTIONAL PBE
+	      &END XC_FUNCTIONAL
+      &WF_CORRELATION
+        &RI_RPA
+          QUADRATURE_POINTS 100
+          &GW
+           NPARAM_PADE 16
+           SELF_CONSISTENCY EVGW0
+           &BSE
+             TDA TDA+ABBA
+             NUM_PRINT_EXC 50
+		NUM_PRINT_EXC_DESCR -1
+             ENERGY_CUTOFF_EMPTY -1
+             ENERGY_CUTOFF_OCC -1
+             &BSE_SPECTRUM 
+              ETA_LIST 0.01, 0.05, 0.1, 0.2, 0.25
+              FREQUENCY_STEP_SIZE 0.1
+             &END BSE_SPECTRUM
+           &END BSE
+          &END GW
+        &END RI_RPA
+      &END
+    &END XC
+  &END DFT
+  &SUBSYS
+    &CELL
+        ABC 25 25 25
+        PERIODIC NONE
+    &END CELL
+    &TOPOLOGY
+      &CENTER_COORDINATES
+      &END
+      COORD_FILE_NAME 6YMU_E_1_07.XYZ
+      COORD_FILE_FORMAT XYZ
+    &END TOPOLOGY
+    &KIND H
+      BASIS_SET ORB    aug-SZV-MOLOPT-ae
+      BASIS_SET RI_AUX RI_aug-SZV-MOLOPT-ae-SR_N_RI_011_s_p_d_f_g_h_i_5_2_0_0_0_0_0_error_1.3e-06
+      POTENTIAL ALL
+    &END KIND
+    &KIND C
+      BASIS_SET ORB    aug-SZV-MOLOPT-ae
+      BASIS_SET RI_AUX RI_aug-SZV-MOLOPT-ae-SR_N_RI_045_s_p_d_f_g_h_i_6_5_2_2_0_0_0_error_3.3e-05
+      POTENTIAL ALL
+    &END KIND
+    &KIND N
+      BASIS_SET ORB    aug-SZV-MOLOPT-ae
+      BASIS_SET RI_AUX RI_aug-SZV-MOLOPT-ae-SR_N_RI_036_s_p_d_f_g_h_i_5_3_3_1_0_0_0_error_7.1e-05
+      POTENTIAL ALL
+    &END KIND
+  &END SUBSYS
+&END FORCE_EVAL

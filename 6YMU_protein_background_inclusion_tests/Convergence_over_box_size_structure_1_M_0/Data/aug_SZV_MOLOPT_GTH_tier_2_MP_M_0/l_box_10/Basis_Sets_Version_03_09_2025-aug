@@ -1,0 +1,2103 @@
+#Choose Molopt Basis Sets up to a error of Genauigkeit besser als 1.0E-4
+
+########################################################################################
+#                                                                                      #
+#                  Gaussian basis sets for excited-state calculations                  #
+#                   like TDDFT, GW, GW+BSE with GTH pseudopotentials                   #
+#                                                                                      #
+# ######################################################################################
+#                                                                                      #
+#  Generation recipe: use existing basis set (e.g. SZV-MOLOPT-GTH) and add for each    #
+#  ℓ quantum number, 0 ≤ ℓ ≤ ℓ_max one contracted Gaussian.                            #
+#                                                                                      #
+#  Example: Carbon SZV-MOLOPT-GTH: 1x s, 1x p;                                         #
+#                                                                                      #
+#           Carbon aug-SZV-MOLOPT-GTH-tier-1 = SZV-MOLOPT-GTH + 1x s + 1x p            #
+#                                            = 2x s + 2x p                             #
+#                                                                                      #
+#           Carbon aug-SZV-MOLOPT-GTH-tier-2 = SZV-MOLOPT-GTH + 1x s + 1x p + 1x d     #
+#                                            = 2x s + 2x p + 1x d                      #
+#                                                                                      #
+#  Optimize contraction coefficients of added Gaussian for molecular set to get        #
+#  GW+BSE excitation energies (5 lowest) in good agreement with complete basis limit.  #
+#  In this way, Gaussian exponents for empty molecular orbitals are optimized.         #
+#  This also means that the convergence of the total energy is expected to be of       #
+#  similar quality as the original, unaugmented basis set.                             #
+#  Also, the condition number is optimized to avoid issues regarding SCF convergence   #
+#  of large molecules and solids.                                                      #
+#                                                                                      #
+#  Please use corresponding RI basis sets from                                         #
+#  BASIS_GTH_MOLOPT_AUG_for_excited_states_RI                                          #
+#                                                                                      #
+#  Contact: Jan Wilhelm, jan.wilhelm@ur.de                                             #
+#                                                                                      #
+########################################################################################
+
+#Choose always tier-1 for first tests https://github.com/JWilhelm/BASIS_AUG_MOLOPT/blob/main/BASIS_GTH_MOLOPT_AUG_for_excited_states
+
+# basis set size: 3 s-functions, 1 p-function, making in total 6 basis functions
+H  aug-SZV-MOLOPT-GTH-tier-1
+1
+   2 0 1 6 3 1
+ 0.0821931844 -0.1316128615 -0.2927993858  0.2139998661  2.6375920948
+ 0.1200000000  0.0000000000 -0.7974173332 -0.2363837584 -1.8587357952
+ 0.2391161505 -0.4531821866 -0.9859963184  0.0035165428  0.5290056906
+ 0.7915015391 -0.4438188612 -0.0208218805 -0.0066795283 -0.0107192155
+ 2.6802228681 -0.1222022121  0.0000000000  0.0000000000  0.0000000000
+10.0684682285 -0.0339174449  0.0000000000  0.0000000000  0.0000000000
+
+# average deviation of 5 lowest BSE exc. energies of  He8, He4, He6, He10 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 2.19 eV
+# basis set size: 2 s-functions, making in total 2 basis functions
+He  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 0 6 2
+ 0.110000  0.000000  0.304929
+ 0.222223 -0.270872 -0.356004
+ 0.350000  0.000000  0.178200
+ 0.777509 -0.356166 -0.033749
+ 2.784478 -0.186998  0.000000
+11.042785 -0.057709  0.000000
+
+# average deviation of 5 lowest BSE exc. energies of  Li4O4H4, Li4H4, Li2O, Li8 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.32 eV
+# basis set size: 3 s-functions, making in total 3 basis functions
+Li  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 0 6 3
+ 0.032613  0.112524 -0.297594  0.333689
+ 0.050000  0.000000  0.000000 -2.745381
+ 0.084367  0.210641 -0.467205  0.145310
+ 0.612031  0.305913  0.178230  0.090552
+ 1.999997  0.418210  0.163121  0.000000
+ 7.133128  0.277444  0.081565  0.000000
+
+
+# average deviation of 5 lowest BSE exc. energies of  Be2H4, BeC2H6, BeF2O2H4, Be2F4, Be4 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 1.53 eV
+# basis set size: 3 s-functions, making in total 3 basis functions
+Be  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 0 7 3
+ 0.074144 -0.173252 -0.905623  0.136248
+ 0.120000  0.000000  0.000000 -0.128164
+ 0.225007 -0.115295 -0.652182  0.027425
+ 0.732914 -0.091068  0.213558  0.000010
+ 2.222208 -0.279935  0.429699  0.000000
+ 6.934612 -0.211896  0.237671  0.000000
+14.927410 -0.101692  0.108892  0.000000
+
+# average deviation of 5 lowest BSE exc. energies of  B3N3H6, BH3CO, B2H6, BH3NH3, B4H4 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.23 eV
+# basis set size: 2 s-functions, 2 p-functions, making in total 8 basis functions
+B   aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 5 2 2
+ 0.101655 -0.417625  0.153553 -0.369557  0.264816
+ 0.150000  0.000000  0.000001  0.000000  0.001000
+ 0.329920 -0.657626  0.000001 -0.645201  0.001000
+ 0.915484  0.070304  0.000001 -0.383518  0.001000
+ 3.053444  0.142390  0.000000 -0.124774  0.000000
+
+ # basis set size: 2 s-functions, 2 p-functions, making in total 8 basis functions
+C  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 6 2 2
+ 0.1282122547 -0.1339908628 28.6455358820 -0.2885276736  2.0722251493
+ 0.1700000000  0.0000000000 94.6798790247  0.0000000000 -2.2409880139
+ 0.3481570864 -0.6109264216 10.6209762829 -0.4153371392  0.2238648453
+ 0.7699114548 -0.3213968794  0.0024513719 -0.4131417301 -0.0587830945
+ 2.1130163905  0.1531421941  0.0000000000 -0.2004702557  0.0000000000
+ 5.6053307517  0.1115328819  0.0000000000 -0.0648689785  0.0000000000
+
+
+# basis set size: 2 s-functions, 2 p-functions, making in total 8 basis functions
+N  aug-SZV-MOLOPT-GTH-tier-1
+  1
+ 2 0 1 6 2 2
+ 0.1120121090 -0.1395623835  5.4042175179 -0.1179360081 -0.1224879196
+ 0.1500000000  0.0000000000 -3.3638692975  0.0000000000  0.1755294746
+ 0.3338022004 -0.5841422339 -1.4121113875 -0.3120396752  0.0072524612
+ 0.8885749672 -0.4450774226  0.0000000000 -0.3173651656 -0.0076486532
+ 2.5426371110  0.0972945165  0.0000000000 -0.1657525162  0.0000000000
+ 7.3419880518  0.1137891565  0.0000000000 -0.0537443304  0.0000000000
+
+ # basis set size: 2 s-functions, 2 p-functions, making in total 8 basis functions
+ O  aug-SZV-MOLOPT-GTH-tier-1
+  1
+ 2 0 1 6 2 2
+ 0.1624916150 -0.2423515378  0.1873969697 -0.2573889830  16.619004383
+ 0.2000000000  0.0000000000  4.9363040367  0.0000000000  275.89132440
+ 0.4969550437 -0.8527917909 -9.9205059878 -0.4542660860  54.766529711
+ 1.3884011887 -0.4343482317  0.0313713489 -0.3777269828  3.2339285113
+ 3.8496210720  0.1399337043  0.0000000000 -0.1900875117  0.0000000000
+10.3892280183  0.1262407229  0.0000000000 -0.0613020372  0.0000000000
+
+
+# average deviation of 5 lowest BSE exc. energies of  CF4, NH4F, CH2F2, OF2, NF3 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.19 eV
+# basis set size: 2 s-functions, 2 p-functions, making in total 8 basis functions
+F   aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 7 2 2
+ 0.048130  0.002175  0.594837  0.008740  1.135010
+ 0.157659  0.078338 -0.105290  0.138839  0.458514
+ 0.396230  0.454888  0.030791  0.300623 -1.286670
+ 0.963986  0.553654 -0.011096  0.357679 -0.296751
+ 2.411456  0.195144  0.000000  0.283252  0.000000
+ 6.156801 -0.145493  0.000000  0.138590  0.000000
+15.025673 -0.076136  0.000000  0.043031  0.000000
+
+# average deviation of 5 lowest BSE exc. energies of  Ne6, Ne4, Ne5 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.55 eV
+# basis set size: 2 s-functions, 2 p-functions, making in total 8 basis functions
+Ne  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 7 2 2
+ 0.165401 -0.056200  0.199980  0.129617  0.781566
+ 0.240000  0.000000 -0.193365  0.000000 -0.455977
+ 0.469438 -0.420816  0.038814  0.313976  0.139634
+ 1.225783 -0.534791 -0.007265  0.369762 -0.045160
+ 3.076395 -0.176241  0.000000  0.286600  0.000000
+ 7.817582  0.136834  0.000000  0.141749  0.000000
+19.144669  0.069476  0.000000  0.044323  0.000000
+
+# average deviation of 5 lowest BSE exc. energies of  Na3N, Na2O, NaF for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.93 eV
+# basis set size: 3 s-functions, 2 p-functions, making in total 9 basis functions
+Na  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 8 3 2
+ 0.049895 -0.000246  1.008694 -1.747093 -0.002074  0.872419
+ 0.100000  0.000000  0.000000  0.393325  0.000000  0.423018
+ 0.275673 -0.088910  0.046070  0.300437 -0.128295  0.110108
+ 0.734684 -0.487455 -0.241563  1.884101 -0.345670  0.092914
+ 1.866708 -0.502007 -0.088006  0.000000 -0.405088  0.000000
+ 4.647814 -0.084235 -0.021215  0.000000 -0.276507  0.000000
+11.135656  0.180415  0.031210  0.000000 -0.102704  0.000000
+23.518801  0.037798  0.005040  0.000000 -0.041235  0.000000
+
+# average deviation of 5 lowest BSE exc. energies of  MgF2, Mg4, MgH2 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.62 eV
+# basis set size: 3 s-functions, 2 p-functions, making in total 9 basis functions
+Mg  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 8 3 2
+ 0.059428 -0.011565 -0.681875  2.324425 -0.006397  1.475724
+ 0.095000  0.000000  0.000000 -1.803400  0.000000 -0.216281
+ 0.168626 -0.012877 -0.474104  0.294440  0.029266  0.427114
+ 0.673565 -0.382610  0.233824  0.271214  0.275295  0.070848
+ 1.851828 -0.641604  0.169149  0.000000  0.456042  0.000000
+ 4.968377 -0.183379  0.039288  0.000000  0.347080  0.000000
+12.924389  0.180093 -0.033269  0.000000  0.154513  0.000000
+30.653048  0.054377 -0.008503  0.000000  0.041949  0.000000
+
+
+# average deviation of 5 lowest BSE exc. energies of  Al2O3, AlF3, AlH3 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.76 eV
+# basis set size: 2 s-functions, 2 p-functions, making in total 8 basis functions
+Al  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 5 2 2
+ 0.078268 -0.241351  0.151154 -0.270738  0.298932
+ 0.125000  0.000000 -0.156898  0.000000  2.973296
+ 0.242419 -0.551006  0.022125 -0.395233 -0.002459
+ 0.454181  0.238368 -0.001564  0.031531  0.114765
+ 1.212902  0.095249  0.010445  0.017523 -0.122175
+
+ # average deviation of 5 lowest BSE exc. energies of  Si2H6, SiF4, SiO2, Si2OH6 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.48 eV
+# basis set size: 2 s-functions, 2 p-functions, making in total 8 basis functions
+Si  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 5 2 2
+ 0.087337 -0.207273  0.584252 -0.353922  0.750795
+ 0.140000  0.000000  0.027180  0.000000  0.030717
+ 0.238884 -0.558640  0.017558 -0.409894  0.023099
+ 0.506394 -0.024324 -0.004390 -0.213717  0.013875
+ 1.256768  0.227718  0.001000  0.067776  0.010000
+
+ # average deviation of 5 lowest BSE exc. energies of  H3PO4, PF5, HCP, PF3, PH3 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.42 eV
+# basis set size: 2 s-functions, 2 p-functions, making in total 8 basis functions
+P   aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 5 2 2
+ 0.098012 -0.292907  0.168591 -0.517934  0.101930
+ 0.160000  0.000000 -0.001804  0.000000 -0.032343
+ 0.284968 -0.973819  0.000666 -0.806871  0.030504
+ 0.708433 -0.023088  0.000164 -0.351511  0.001575
+ 1.631862  0.335074  0.000000  0.123300  0.000000
+
+ # average deviation of 5 lowest BSE exc. energies of  SF2, HSSH, CS2, S2, S5, H2SO4, SF4 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.49 eV
+# basis set size: 2 s-functions, 2 p-functions, making in total 8 basis functions
+S   aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 5 2 2
+ 0.140587 -0.176972 -0.449344 -0.213310  1.437270
+ 0.180000  0.000000  0.699705  0.000000 -0.581446
+ 0.410168 -0.733925 -0.087721 -0.605595  0.161236
+ 1.131471  0.127069  0.004694 -0.162197  0.046075
+ 2.215855  0.170963  0.000000  0.092192  0.000000
+
+ # average deviation of 5 lowest BSE exc. energies of  ClF, HCl, CCl4, ClF3, Cl2 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.67 eV
+# basis set size: 2 s-functions, 2 p-functions, making in total 8 basis functions
+Cl  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 5 2 2
+ 0.150015 -0.402600  0.538259 -0.299835  0.553722
+ 0.200000  0.000000  0.141764  0.000000 -0.338051
+ 0.461213 -1.015493 -0.034068 -0.463530  0.076868
+ 1.470718  0.023266  0.002838 -0.193945  0.001000
+ 2.379078  0.349065  0.000000  0.116462  0.000000
+
+
+# average deviation of 5 lowest BSE exc. energies of  Ar4, Ar5, Ar6 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 3.84 eV
+# basis set size: 2 s-functions, 2 p-functions, making in total 8 basis functions
+Ar  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 6 2 2
+ 0.128036 -0.148475  0.214780 -0.248562  0.567917
+ 0.200000  0.000000 -0.000000  0.000000 -0.527484
+ 0.366457 -0.745539  0.000000 -0.507928  0.152296
+ 0.925306 -0.356808  0.000001 -0.382286 -0.026938
+ 2.888051  0.488559  0.000000 -0.050561  0.000000
+ 3.936450 -0.126877  0.000000  0.081197  0.000000
+
+
+# average deviation of 5 lowest BSE exc. energies of  K3P, KCl, K2S, KH, KF for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 1.04 eV
+# basis set size: 3 s-functions, 2 p-functions, making in total 9 basis functions
+K   aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 7 3 2
+ 0.022000  0.000000  0.000000 -1.518034  0.000000  0.090876
+ 0.036854  0.136961  1.420210  0.130385 -0.002663  0.099860
+ 0.163340  0.132147 -0.040956  0.099995 -0.129654  0.100157
+ 0.407596  0.640287 -0.523436  0.101229 -0.345163  0.100000
+ 0.954063  0.579236 -0.270918  0.100000 -0.331387  0.100000
+ 2.714958 -0.332680  0.045797  0.000000 -0.600248  0.000000
+ 2.891270 -0.125588  0.141760  0.000000  0.586274  0.000000
+
+
+# average deviation of 5 lowest BSE exc. energies of  CaF2, CaCl2, CaH2 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.86 eV
+# basis set size: 3 s-functions, 2 p-functions, making in total 9 basis functions
+Ca  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 7 3 2
+ 0.040000  0.000000  0.000000  1.182717  0.000000  1.415965
+ 0.055000  0.039132  1.342564  2.420884 -0.000004  1.131821
+ 0.242971 -0.208972 -0.096822  1.379313 -0.251682  0.302284
+ 0.614376 -0.908395 -0.502207 -0.207363 -0.634031 -0.308358
+ 1.429520 -0.323550 -0.096936  0.091781 -0.466720 -0.101901
+ 4.091752  0.887611  0.216895  0.000000  0.014547  0.000000
+ 5.284986 -0.416183 -0.083912  0.000000  0.064960  0.000000
+
+
+# average deviation of 5 lowest BSE exc. energies of  ScH3, ScCl3, ScOF, ScF3 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.26 eV
+# basis set size: 3 s-functions, 2 p-functions, 2 d-functions, making in total 19 basis functions
+Sc  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 2 6 3 2 2
+ 0.054429 -0.076152  1.048240  0.729017 -0.004061  0.517666  0.155178 -0.050553
+ 0.197284 -0.063678  0.072090 -0.197791  0.091871  0.015971  0.446780  0.116897
+ 0.543348 -0.729329 -0.458470  0.335205  0.444181  0.003743  0.405780  0.023058
+ 1.358433 -0.619613 -0.224169 -0.136325  0.468025 -0.024791  0.336184  0.093419
+ 3.531908  0.513267  0.153537  0.000000  0.071268  0.000000  0.192728  0.000000
+ 7.596359 -0.005608 -0.000597  0.000000 -0.092378  0.000000  0.045120  0.000000
+
+ # average deviation of 5 lowest BSE exc. energies of  TiF4, TiH4, TiO2, TiCl4 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.09 eV
+# basis set size: 3 s-functions, 2 p-functions, 2 d-functions, making in total 19 basis functions
+Ti  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 2 6 3 2 2
+ 0.077078  0.075172  0.993127 -0.616466 -0.007523  0.252101  0.132321 -0.061299
+ 0.222222 -0.029011  0.165168  0.106623  0.077641  0.035296  0.347092 -0.194295
+ 0.596768 -0.726045 -0.451592  0.141671  0.468198  0.064345  0.396808  0.104238
+ 1.513589 -0.664996 -0.256642  0.000000  0.527329  0.000000  0.330344  0.000000
+ 3.894698  0.499504  0.103957  0.000000  0.100913  0.000000  0.195987  0.000000
+ 7.884570  0.004751 -0.002691  0.000000 -0.108737  0.000000  0.052842  0.000000
+
+ # average deviation of 5 lowest BSE exc. energies of  VOF3, VH5 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.07 eV
+# basis set size: 3 s-functions, 2 p-functions, 2 d-functions, making in total 19 basis functions
+V   aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 2 6 3 2 2
+ 0.067390 -0.000084  1.134108  0.105763 -0.004719  0.237047  0.134089  0.645780
+ 0.242420 -0.048891  0.104275 -0.033832  0.086227  9.518758  0.324485 -0.579663
+ 0.666665 -0.670820 -0.436715  0.002718  0.483737 -0.226238  0.350513  0.100000
+ 1.674403 -0.682491 -0.215218  0.000000  0.556225  0.000000  0.318208  0.000000
+ 4.192170  0.491009  0.116394  0.000000  0.142384  0.000000  0.194804  0.000000
+ 7.984624  0.020762  0.003472  0.000000 -0.127318  0.000000  0.054932  0.000000
+
+ # average deviation of 5 lowest BSE exc. energies of  CrO3, CrCO6 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.09 eV
+# basis set size: 3 s-functions, 2 p-functions, 2 d-functions, making in total 19 basis functions
+Cr  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 2 6 3 2 2
+ 0.096285 -0.018726  1.121145 -0.353046 -0.012851  0.978749  0.091087  0.580261
+ 0.293768 -0.097787  0.171514  1.043504  0.104097  0.386661  0.298492 -0.181617
+ 0.787756 -0.813738 -0.583673  0.415991  0.518904  0.008701  0.315064 -0.220777
+ 1.935101 -0.806654 -0.230184  0.000000  0.572145  0.000000  0.291296  0.000000
+ 4.473610  0.611382  0.102717  0.000000  0.123957  0.000000  0.165470  0.000000
+ 8.512515  0.044158  0.005521  0.000000 -0.106538  0.000000  0.081831  0.000000
+
+
+ # average deviation of 5 lowest BSE exc. energies of  MnO3F, MnO4H for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.30 eV
+# basis set size: 3 s-functions, 2 p-functions, 2 d-functions, making in total 19 basis functions
+Mn  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 2 6 3 2 2
+ 0.101924 -0.091391  0.922002 -0.248396 -0.006600  0.119157  0.104489  1.938221
+ 0.342420 -0.107063  0.161978  0.243904  0.112195  0.175407  0.410034 -0.220636
+ 0.889601 -0.719279 -0.484911 -0.039459  0.547991  0.025414  0.462244  0.329310
+ 2.164527 -0.728865 -0.168391  0.000000  0.595365  0.000000  0.432303  0.000000
+ 4.848055  0.524173  0.080999  0.000000  0.147233  0.000000  0.251552  0.000000
+ 8.544553  0.073093  0.007738  0.000000 -0.112357  0.000000  0.128427  0.000000
+
+
+# average deviation of 5 lowest BSE exc. energies of  ZnF2, ZnCl2, ZnMe2, ZnH2 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.07 eV
+# basis set size: 2 s-functions, 2 p-functions, 2 d-functions, making in total 18 basis functions
+Zn  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 2 6 2 2 2
+ 0.079830 -0.482185 -1.784008 -0.498669  0.580588  0.009049  2.855519
+ 0.222222 -0.625184  1.878864 -0.531921 -2.648594  0.097325  0.309212
+ 0.545418  0.137056 -0.241665 -0.060403 -0.605202  0.224404  0.058883
+ 1.341704  0.274600 -0.031706  0.109520 -0.016178  0.326076 -0.046454
+ 3.167793 -0.095613  0.000000 -0.010450  0.000000  0.358914  0.000000
+ 6.400813  0.021801  0.000000  0.002944  0.000000  0.285687  0.000000
+
+ # average deviation of 5 lowest BSE exc. energies of  GaF, GaCl, GaCl3, GaH3 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.15 eV
+# basis set size: 2 s-functions, 2 p-functions, 2 d-functions, making in total 18 basis functions
+Ga  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 2 7 2 2 2
+ 0.045000  0.000000 -1.256531  0.000000 -0.841272  0.000000  0.839278
+ 0.076562 -0.411890  0.899246 -0.419386  0.099062 -0.001205 -0.057286
+ 0.232197 -0.765662 -0.275929 -0.807329 -0.448691 -0.056130  0.242235
+ 0.571611  0.114461  0.017475 -0.096033  0.096838 -0.204608 -0.021911
+ 1.430064  0.270488  0.075207  0.130532  0.108566 -0.341437  0.002633
+ 3.428369 -0.049926  0.000000  0.003363  0.000000 -0.386389  0.000000
+ 7.066654  0.004039  0.000000  0.000167  0.000000 -0.311164  0.000000
+
+ # average deviation of 5 lowest BSE exc. energies of  GeCl4, GeO, GeH4, GeF4, GeO2 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.32 eV
+# basis set size: 2 s-functions, 2 p-functions, making in total 8 basis functions
+Ge  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 5 2 2
+ 0.070000  0.000000  2.807700  0.000000  0.615596
+ 0.110740 -0.656438  8.342740 -0.400605 -0.037876
+ 0.322428 -0.974595 -0.765268 -0.762507 -0.017243
+ 1.419172  0.601635 -0.018707  0.102041  0.009918
+ 3.751626 -0.081331  0.000000  0.009035  0.000000
+
+
+# average deviation of 5 lowest BSE exc. energies of  AsH3, As4, AsCl3 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.34 eV
+# basis set size: 2 s-functions, 2 p-functions, making in total 8 basis functions
+As  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 4 2 2
+ 0.097982 -0.209729  0.496854 -0.182958  0.865328
+ 0.234711 -0.705420  2.447463 -0.425177 -0.113303
+ 0.889293 -0.687765 -0.414187 -0.362620  0.013439
+ 1.098624  0.855667  0.173184  0.312803  0.009989
+
+ # average deviation of 5 lowest BSE exc. energies of  SeO2H2, Se6, SeO2 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.21 eV
+# basis set size: 2 s-functions, 2 p-functions, making in total 8 basis functions
+Se  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 5 2 2
+ 0.107173 -0.299101 -0.737133 -0.381187  3.110933
+ 0.180000  0.000000  2.924920  0.000000  0.700419
+ 0.303575 -1.057800 -1.445593 -0.653355 -0.531420
+ 1.029752 -0.177617  0.105073 -0.349361 -0.072104
+ 1.465689  0.522315  0.110978  0.302629  0.099390
+
+#Continued on 01.09.2025:
+
+# average deviation of 5 lowest BSE exc. energies of  BrCl, HCBr3, HBr, Br2 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.47 eV
+# basis set size: 2 s-functions, 2 p-functions, making in total 8 basis functions
+Br  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 4 2 2
+ 0.115887 -0.358131  1.429385 -0.708523 -0.145490
+ 0.337589 -1.701043  3.878306 -1.220408  0.012448
+ 0.995743 -0.178220 -0.761695 -0.559270 -0.004279
+ 1.737393  0.698849  0.000000  0.408222  0.000000
+
+# average deviation of 5 lowest BSE exc. energies of  Kr4, Kr5, Kr6 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 1.43 eV
+# basis set size: 2 s-functions, 2 p-functions, making in total 8 basis functions
+Kr  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 5 2 2
+ 0.108550 -0.206171  0.384673 -0.408971  0.834598
+ 0.188632  0.000000 -0.425830  0.000000 -0.740068
+ 0.327796 -1.439837  0.171324 -0.909538  0.292154
+ 1.005533 -0.533586 -0.028133 -0.573409 -0.022890
+ 1.784436  0.810838  0.000000  0.348552  0.000000
+
+
+# average deviation of 5 lowest BSE exc. energies of  RbO, RbH, RbF for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.64 eV
+# basis set size: 3 s-functions, 2 p-functions, 1 d-function, making in total 14 basis functions
+Rb  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 2 8 3 2 1
+ 0.029773  0.025109  0.829792 -1.179017 -0.000551  0.873549  0.470321
+ 0.048344  0.000000  0.000000  5.046540  0.000000 685.389291  0.460946
+ 0.078497  0.002468  0.316848  1.212742  0.039956 -32.326632  0.477423
+ 0.198690 -0.304219 -0.278176  2.654939  0.306717  1.718626  0.421318
+ 0.483816 -0.827806 -0.296364  0.315033  0.499667  1.316564  0.144844
+ 1.134628 -0.101895 -0.042230  0.455092  0.211536 -2.599452  0.071141
+ 2.414406  0.488732  0.125115  0.000000 -0.161484  0.000000  0.000000
+ 7.107231 -0.062218 -0.013507  0.000000  0.035700  0.000000  0.000000
+
+# average deviation of 5 lowest BSE exc. energies of  SrO, SrH2, SrS, SrF2 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 1.12 eV
+# basis set size: 3 s-functions, 2 p-functions, making in total 9 basis functions
+Sr  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 7 3 2
+ 0.050841  0.007136  0.825601  4.904654  0.001214  3.042896
+ 0.103728  0.000000  0.000000  0.101418  0.000000  0.100002
+ 0.211628  0.250908 -0.073959  0.100000  0.267636  0.100000
+ 0.532450  0.904733 -0.431882  0.100000  0.555386 -0.175079
+ 1.283100  0.167836 -0.041158  0.096820  0.260320  0.099995
+ 2.536777 -0.571247  0.158929  0.000000 -0.195822  0.000000
+ 7.290112  0.069364 -0.016183  0.000000  0.035659  0.000000
+
+# average deviation of 5 lowest BSE exc. energies of  YF3, YO, YF for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.55 eV
+# basis set size: 3 s-functions, 2 p-functions, 2 d-functions, making in total 19 basis functions
+Y   aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 2 8 3 2 2
+ 0.041587  0.121767  0.813528  0.308901 -0.000773  0.306586  0.124574  0.932921
+ 0.069026  0.000000  0.000000 -0.009199  0.000000 -0.000546  0.000000  0.003572
+ 0.114567  0.047096  0.381463 -0.004173 -0.027444 -0.018552  0.383269  0.298818
+ 0.281952  0.370251 -0.369782  0.000943 -0.347361  0.021768  0.474465  0.249792
+ 0.656917  0.966305 -0.405979 -0.004993 -0.598858 -0.027328  0.336723  0.102025
+ 1.376251  0.082123 -0.087291  0.001781 -0.245233 -0.001603  0.127574  0.130930
+ 2.700922 -0.597720  0.235885  0.000000  0.187918  0.000000 -0.031404  0.000000
+ 7.169830  0.064757 -0.022628  0.000000 -0.024277  0.000000 -0.000499  0.000000
+
+# average deviation of 5 lowest BSE exc. energies of  ZrO2, ZrF4 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.17 eV
+# basis set size: 3 s-functions, 2 p-functions, 2 d-functions, making in total 19 basis functions
+Zr  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 2 8 3 2 2
+ 0.046851 -0.007130  0.810804  0.516212 -0.000525  1.841061  0.048657  0.119295
+ 0.078003  0.000000  0.000000 -4.235096  0.000000 -1.010486  0.000000  0.040919
+ 0.129869  0.003239  0.526743  0.012471 -0.019802  0.746750  0.242072  0.121745
+ 0.314575 -0.327047 -0.381212  2.494652 -0.309198  0.195727  0.399125  0.095046
+ 0.699653 -0.923671 -0.452166  0.154040 -0.588541 -0.197701  0.296191  0.164436
+ 1.478550 -0.214258 -0.141903  0.009751 -0.319407  0.007719  0.152104  0.087430
+ 2.940870  0.694262  0.288001  0.000000  0.222353  0.000000 -0.011936  0.000000
+ 7.568386 -0.094978 -0.033617  0.000000 -0.020866  0.000000 -0.001689  0.000000
+
+# average deviation of 5 lowest BSE exc. energies of  NbF3, NbO2F for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.13 eV
+# basis set size: 3 s-functions, 2 p-functions, 2 d-functions, making in total 19 basis functions
+Nb  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 2 8 3 2 2
+ 0.051688  0.006295  0.631490  0.232966 -0.000212  0.100943 -0.039161  0.170350
+ 0.083388  0.000000  0.000000  3.807886  0.000000  0.020134  0.000000  0.164752
+ 0.134531 -0.010189  0.576706 -1.460811 -0.004780 -0.000333 -0.185456  0.000962
+ 0.297916  0.168229 -0.275959 -0.013885 -0.120882  0.000030 -0.373135  0.132752
+ 0.638108  0.749244 -0.462987  0.035148 -0.340281 -0.003353 -0.367470  0.009403
+ 1.402769  0.489342 -0.310829 -0.019201 -0.276256 -0.000975 -0.232772  0.013345
+ 3.361754 -7.592191  3.690017  0.000000  0.956420  0.000000 -0.389233  0.000000
+ 3.445688  6.967608 -3.377479  0.000000 -0.840846  0.000000  0.388364  0.000000
+
+# average deviation of 5 lowest BSE exc. energies of  MoO3, MoCO6, MoF6 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.05 eV
+# basis set size: 3 s-functions, 2 p-functions, 2 d-functions, making in total 19 basis functions
+Mo  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 2 7 3 2 2
+ 0.052949  0.016177 -0.574267 -2.159209  0.000884  0.209448  0.013662  1.725182
+ 0.083802 -0.062286 -0.868201  0.060564 -0.000916  0.096803  0.047819  0.098368
+ 0.189498  0.085912 -0.210930  0.154987 -0.016882  0.099674  0.200728  0.098935
+ 0.439257  0.131763  0.062954  0.102452 -0.177326  0.100360  0.312615 -0.017452
+ 0.894040  0.676101  0.285544  0.099375 -0.244205 -0.089307  0.207391  0.101671
+ 1.999996  0.255133 -0.231958  0.000000 -0.375633  0.000000  0.289650  0.000000
+ 2.540273 -0.578531  0.207480  0.000000  0.307101  0.000000 -0.149152  0.000000
+
+# average deviation of 5 lowest BSE exc. energies of  TcO3F, TcO for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.04 eV
+# basis set size: 3 s-functions, 2 p-functions, 2 d-functions, making in total 19 basis functions
+Tc  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 2 8 3 2 2
+ 0.052898  0.094935 -0.799513 -1.862810  0.002744  1.243596  0.022350  0.075406
+ 0.089484  0.000000  0.000000  0.343955  0.000000 -0.396587  0.000000  0.155728
+ 0.151376  0.091448 -0.679068  2.167647 -0.016891  0.102261  0.202435  0.005265
+ 0.387593 -0.122554  0.110131  0.669494 -0.345096  0.005362  0.419921  0.081776
+ 0.887428 -0.325518  0.411181  0.575923 -0.878565  0.099664  0.337694 -0.034953
+ 1.923601 -0.382432  0.205154  0.000000 -0.484599  0.000000  0.277986  0.000000
+ 3.111533  5.402034 -2.906114  0.000000 -1.589412  0.000000  0.248591  0.000000
+ 3.164225 -4.936025  2.690106  0.000000  1.875473  0.000000 -0.315744  0.000000
+
+# average deviation of 5 lowest BSE exc. energies of  AgCl, Ag2 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.31 eV
+# basis set size: 2 s-functions, 2 p-functions, 2 d-functions, making in total 18 basis functions
+Ag  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 2 6 2 2 2
+ 0.062847  0.619659 -0.547910  0.747374  0.190789 -0.034846  0.994925
+ 0.115205  0.000000 -0.395524  0.000000  0.004035  0.000000 -1.013514
+ 0.211183  0.497578  0.022841  0.484454  0.110305 -0.227578 -0.089036
+ 0.553040 -0.405167  0.026502 -0.158229  0.108252 -0.391768  0.443446
+ 1.295160 -0.065091  0.214512 -0.041727  0.103505 -0.411113 -0.364205
+ 2.586709  0.043755  0.000000  0.022645  0.000000 -0.228120  0.000000
+
+# average deviation of 5 lowest BSE exc. energies of  CdMe2, CdF2 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.07 eV
+# basis set size: 2 s-functions, 2 p-functions, 2 d-functions, making in total 18 basis functions
+Cd  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 2 6 2 2 2
+ 0.076307  0.789967 -1.472454  0.795090 -0.067571 -0.013173  0.268892
+ 0.130220  0.000000  0.199485  0.000000 -1.351997  0.000000 -0.095576
+ 0.222222  0.564376  0.090947  0.419549  0.132505 -0.168907 -0.002901
+ 0.573376 -0.420174  0.106101 -0.083108  0.075463 -0.363233 -0.002599
+ 1.315618 -0.111910  0.094687 -0.096635  0.069910 -0.407839  0.012196
+ 2.617301  0.056943  0.000000  0.032277  0.000000 -0.270406  0.000000
+
+# average deviation of 5 lowest BSE exc. energies of  InH, InH3, InCl, InCl3 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.27 eV
+# basis set size: 2 s-functions, 2 p-functions, 2 d-functions, making in total 18 basis functions
+In  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 2 7 2 2 2
+ 0.059413 -0.313236 -1.775515  0.384462  0.113016 -0.000259  0.121976
+ 0.098319  0.000000  1.087622  0.000000  0.002532  0.000000 -0.045191
+ 0.162701 -0.728192  3.041999  0.548122 -0.072256  0.057469  0.009979
+ 0.389454 -0.080148 -0.752441  0.140417  0.105177  0.288252  0.006959
+ 0.898324  0.435246 -0.373341 -0.178879  0.108619  0.486649 -0.004121
+ 1.829866 -0.064345  0.000000  0.031433  0.000000  0.432609  0.000000
+ 3.101675 -0.014757  0.000000 -0.002337  0.000000  0.245121  0.000000
+
+# average deviation of 5 lowest BSE exc. energies of  SnH4, SnO, SnO2 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.30 eV
+# basis set size: 2 s-functions, 2 p-functions, making in total 8 basis functions
+Sn  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 6 2 2
+ 0.063644  0.056968  0.128933  0.117723  0.515585
+ 0.064583  0.000000 -0.100858  0.000000 -0.441231
+ 0.065536 -0.215613  0.000886 -0.261775 -0.029034
+ 0.172776 -0.598033  0.001255 -0.235165  0.005130
+ 0.486831 -0.512956  0.001035 -0.282734 -0.002165
+ 0.666670  0.689214  0.001051  0.249602  0.001106
+
+# average deviation of 5 lowest BSE exc. energies of  SbF, SbF3, SbH3 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.31 eV
+# basis set size: 2 s-functions, 2 p-functions, making in total 8 basis functions
+Sb  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 6 2 2
+ 0.073466 -0.171358  0.691444 -0.255230  0.119836
+ 0.108530  0.000000 41.920377  0.000000 -0.027232
+ 0.160329 -0.264402  0.117283 -0.611128  0.004376
+ 0.244349 -0.615740  0.010000 -0.378297 -0.001094
+ 0.576116 -0.351217  0.111440 -0.792348  0.000100
+ 0.757214  0.691594  0.010000  0.756051 -0.000304
+
+# average deviation of 5 lowest BSE exc. energies of  TeO2, TeH2, TeO for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.44 eV
+# basis set size: 2 s-functions, 2 p-functions, making in total 8 basis functions
+Te  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 6 2 2
+ 0.082234  0.215695 -0.445649  0.106355  0.383786
+ 0.118887  0.000000  0.501419  0.000000 -0.189469
+ 0.171877  0.191335 -0.284415  0.113449  0.018093
+ 0.260565  0.833378 -0.113470  0.154271  0.010533
+ 0.666553  0.368145  0.101172  0.204460  0.000673
+ 0.871171 -0.768210  0.092073 -0.201076  0.001028
+
+# average deviation of 5 lowest BSE exc. energies of  ICl, I2, IH for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.27 eV
+# basis set size: 2 s-functions, 2 p-functions, making in total 8 basis functions
+I   aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 6 2 2
+ 0.050000  0.000000 -1.708389  0.000000  0.989190
+ 0.083015  0.147701  1.717651  0.151452 -0.229814
+ 0.201369  0.441846 -0.986055  0.307131  0.114248
+ 0.367159  0.674866  0.068545  0.154408 -0.038322
+ 0.828886 -0.046175  0.103229  0.405448 -0.017281
+ 0.966173 -0.472463  0.104898 -0.431253  0.009667
+
+# average deviation of 5 lowest BSE exc. energies of  CsH, CsF, CsO for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 1.73 eV
+# basis set size: 3 s-functions, 2 p-functions, making in total 9 basis functions
+Cs  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 7 3 2
+ 0.026691  0.280660  1.173264  1.058077  0.011885  3.579495
+ 0.063240  0.000000  0.000000  1.718034  0.000000  1.100579
+ 0.149837 -0.141743  0.078136 -0.402716  0.344476 -0.163308
+ 0.332486 -0.512310 -0.480608 -0.084072  0.336498  0.163917
+ 0.666654 -0.489377  0.118067  0.092337  0.500190  0.066794
+ 0.913482  0.358345 -0.098255  0.097698 -0.016243  0.100000
+ 1.000866  0.280322  0.098179  0.099999 -0.360207  0.100023
+
+# average deviation of 5 lowest BSE exc. energies of  BaH2, BaF2, BaO, BaS for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 1.20 eV
+# basis set size: 3 s-functions, 2 p-functions, making in total 9 basis functions
+Ba  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 7 3 2
+ 0.038868 -0.097599  1.388752  0.267184  0.001686  0.543074
+ 0.080325  0.000000  0.000000 -0.214517  0.000000  0.208602
+ 0.166001  0.112796  0.080178  0.433509 -0.129414  0.001000
+ 0.409515  0.587584 -0.829785  0.101334 -0.199997 -0.006639
+ 0.923816  0.534778 -0.187597  0.100000 -0.513378  0.001000
+ 1.042416 -0.548867  0.303553  0.100000  0.581707  0.001000
+ 1.099107 -0.265978  0.133167  0.100000 -0.076121  0.001000
+
+# average deviation of 5 lowest BSE exc. energies of  HfO, HfF2, HfF4, HfO2 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.25 eV
+# basis set size: 3 s-functions, 2 p-functions, 2 d-functions, making in total 19 basis functions
+Hf  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 2 7 3 2 2
+ 0.060258 -0.118019  0.917541  4.415134 -0.000081 -0.317073  0.138650 -4.460189
+ 0.105355  0.000000  0.000000 -10.315689  0.000000  0.080823  0.000000  0.073287
+ 0.184204 -0.116983  0.367518 -54.124847  0.006791 -0.000066  0.537885 -0.316064
+ 0.482781 -0.403766 -0.527116  3.002317  0.050913 -0.001314  0.563160  0.113940
+ 1.091215 -0.911502 -0.450098  0.180616  0.044171  0.001557  0.281226  0.364391
+ 2.597200 -0.135945  0.121001  0.000000  0.293386  0.000000  0.040717  0.000000
+ 2.671196  0.788939  0.166408  0.000000 -0.301974  0.000000 -0.047797  0.000000
+
+# average deviation of 5 lowest BSE exc. energies of  TaF3, TaO2F for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.11 eV
+# basis set size: 3 s-functions, 2 p-functions, 2 d-functions, making in total 19 basis functions
+Ta  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 2 7 3 2 2
+ 0.065634 -0.015351  0.839901  0.980507  0.000164  0.582944  0.101788  0.113159
+ 0.114941  0.000000  0.000000 -0.865002  0.000000 -0.028826  0.000000  0.077111
+ 0.201289 -0.023090  0.248901  0.099941 -0.015667  0.095346  0.298377  0.112045
+ 0.459026 -0.356340 -0.406417  0.099286 -0.108218 -0.046692  0.293416  0.078853
+ 1.000199 -0.863712 -0.568363  0.074425 -0.156084  0.099867  0.225370  0.092694
+ 2.777081 -0.000793  0.308252  0.000000 -0.366343  0.000000  0.111690  0.000000
+ 2.946056  0.481244 -0.039175  0.000000  0.388449  0.000000 -0.093115  0.000000
+
+# average deviation of 5 lowest BSE exc. energies of  WCO6, WF6, WCS6 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.04 eV
+# basis set size: 3 s-functions, 2 p-functions, 2 d-functions, making in total 19 basis functions
+W   aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 2 6 3 2 2
+ 0.074663 -0.194909  0.767604 -1.159324  0.002782 -0.380534  0.166410  0.099623
+ 0.214447 -0.084224  0.243846  0.105546 -0.022742  0.098221  0.520355  0.099998
+ 0.501100 -0.518232 -0.399442  0.099941 -0.201524 -0.264752  0.551980  0.074280
+ 1.106151 -1.218291 -0.497582  0.137270 -0.270577  0.090119  0.396441  0.100019
+ 2.893835  0.301692  0.288483  0.000000 -0.467841  0.000000  0.135921  0.000000
+ 3.103254  0.441155 -0.046849  0.000000  0.516608  0.000000 -0.104348  0.000000
+
+# average deviation of 5 lowest BSE exc. energies of  OsO3 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.09 eV
+# basis set size: 3 s-functions, 2 p-functions, 2 d-functions, making in total 19 basis functions
+Os  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 2 7 3 2 2
+ 0.105081 -0.043141  0.420830  0.450121  0.003128  0.005108 -0.078891  0.120043
+ 0.172129  0.000000  0.000000 -0.304931  0.000000  0.119191  0.000000 -0.068093
+ 0.281959 -0.114633  0.617676  0.006971 -0.022925  0.083396 -0.460410 -0.006632
+ 0.604329 -0.387029 -0.626533  0.001000 -0.169922  0.053388 -0.478649 -0.004482
+ 1.267677 -0.946576 -0.597291  0.003874 -0.221194  0.097730 -0.384061  0.000100
+ 2.913080 -0.151831  0.445036  0.000000 -0.259358  0.000000 -0.115497  0.000000
+ 3.254045  0.750521 -0.143105  0.000000  0.300027  0.000000  0.074118  0.000000
+
+# average deviation of 5 lowest BSE exc. energies of  PtCO4, PtO, PtO2 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.06 eV
+# basis set size: 3 s-functions, 2 p-functions, 2 d-functions, making in total 19 basis functions
+Pt  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 2 7 3 2 2
+ 0.105770 -0.422770  0.768211  1.110000  0.009487 -0.435679  0.101113  0.124096
+ 0.187052  0.000000  0.000000 -1.113320  0.000000  0.121361  0.000000 -0.035933
+ 0.330796 -0.114509  0.079357  0.211404 -0.160189  0.091389  0.322200 -0.004745
+ 0.885340 -0.081706 -0.389005  0.099819 -0.778436  0.088956  0.364806  0.004123
+ 1.999981 -0.571772 -0.410633  0.000000 -0.529494  0.000000  0.129335  0.000000
+ 3.114659  0.706153  0.409305  0.000000 -0.272067  0.000000  0.216341  0.000000
+ 3.630668 -0.159790 -0.051718  0.000000  0.538256  0.000000 -0.235371  0.000000
+
+# average deviation of 5 lowest BSE exc. energies of  AuCl3, Au2, AuCl for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.34 eV
+# basis set size: 2 s-functions, 2 p-functions, 2 d-functions, making in total 18 basis functions
+Au  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 2 6 2 2 2
+ 0.081714  0.754615  0.892660  0.955900  1.066352  0.072643 -0.271399
+ 0.143238  0.000000 -0.016170  0.000000  0.100000  0.000000  0.100000
+ 0.251083  0.504358  0.009996  0.133984  0.100026  0.342848  0.099999
+ 0.666664 -0.527617  0.009992 -0.144512  0.101160  0.499420  0.100000
+ 1.563057 -0.007388  0.000000  0.010298  0.000000  0.393434  0.000000
+ 2.950008  0.043352  0.000000  0.027244  0.000000 -0.013695  0.000000
+
+# average deviation of 5 lowest BSE exc. energies of  HgMe2, HgF2, Hg2Cl2 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.15 eV
+# basis set size: 2 s-functions, 2 p-functions, 2 d-functions, making in total 18 basis functions
+Hg  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 2 7 2 2 2
+ 0.078430 -0.478544  0.431044  0.626349 -0.560627  0.016314  0.988669
+ 0.124587  0.000000  3.451935  0.000000  1.412289  0.000000 -0.471163
+ 0.197908 -0.613050  0.038971  0.562923  5.410537  0.133464  0.000828
+ 0.443216  0.041436 -0.004925  0.012886 11.638407  0.274191 -0.001393
+ 0.968505  0.467349  0.006707 -0.270433 -1.741470  0.344643  0.014756
+ 1.999950 -0.127545  0.000000  0.112459  0.000000  0.245746  0.000000
+ 3.031517 -0.000773  0.000000 -0.035104  0.000000 -0.051519  0.000000
+
+# average deviation of 5 lowest BSE exc. energies of  TlCl, TlH3, TlCl3, TlH for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.27 eV
+# basis set size: 2 s-functions, 2 p-functions, 2 d-functions, making in total 18 basis functions
+Tl  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 2 7 2 2 2
+ 0.061648 -0.296536 -1.205076  0.504618  0.411777  0.000173  0.450148
+ 0.099225  0.000000  0.890233  0.000000 -0.400278  0.000000 -0.143337
+ 0.159704 -0.832381 -0.422752  0.521905  0.322203  0.079299  0.008307
+ 0.399455 -0.261927  0.033902  0.120848  1.513465  0.311198  0.000969
+ 0.933878  0.654386  0.100020 -0.217643  0.099918  0.449765  0.001016
+ 1.995905 -0.125438  0.000000  0.089582  0.000000  0.335647  0.000000
+ 3.381004 -0.012728  0.000000 -0.016321  0.000000 -0.053146  0.000000
+
+# average deviation of 5 lowest BSE exc. energies of  PbO, PbH4, PbO2 for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.26 eV
+# basis set size: 2 s-functions, 2 p-functions, making in total 8 basis functions
+Pb  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 6 2 2
+ 0.073968 -0.082212  0.168661  0.131892  0.662954
+ 0.075840  0.000000 -0.014927  0.000000 -0.611936
+ 0.077759 -0.206626 -0.107055  0.243024  0.000993
+ 0.222223 -0.960047  0.007608  0.502933 -0.000234
+ 0.981425  0.574813 -0.001905 -0.134234  0.000992
+ 1.933598 -0.128503  0.000000  0.015280  0.000000
+
+# average deviation of 5 lowest BSE exc. energies of  BiH3, BiF3, BiF for aug-SZV-MOLOPT-GTH-tier-1 compared to basis set limit: 0.29 eV
+# basis set size: 2 s-functions, 2 p-functions, making in total 8 basis functions
+Bi  aug-SZV-MOLOPT-GTH-tier-1
+1
+2 0 1 6 2 2
+ 0.066725  0.159246 -0.683625  0.106622  0.139056
+ 0.070517  0.000000  0.798034  0.000000 -0.021721
+ 0.074524 -0.308379  0.223436 -0.421378 -0.054457
+ 0.222221 -0.715303  0.028511 -0.507232 -0.002711
+ 1.317942  0.723433  0.002019  0.184382  0.000214
+ 1.666928 -0.433606  0.000000 -0.092396  0.000000
+
+#https://github.com/JWilhelm/BASIS_AUG_MOLOPT/blob/main/BASIS_GTH_MOLOPT_AUG_for_excited_states_RI 
+
+# RI basis set for H, GTH pseudo, relative accuracy of RI-MP2: 5.3e-05
+H  RI_aug-SZV-MOLOPT-GTH-tier-1_N_RI_007_s_p_d_f_g_h_i_4_1_0_0_0_0_0_error_5.3e-05
+    5
+     1   0   0   1   1
+      0.1494815912    1.0000000000
+     2   0   0   1   1
+      0.5133894557    1.0000000000
+     3   0   0   1   1
+      1.6001512562    1.0000000000
+     4   0   0   1   1
+     13.2552158069    1.0000000000
+     5   1   1   1   1
+      0.4194802771    1.0000000000
+
+# RI basis set for He, GTH pseudo, relative accuracy of RI-MP2: 2.3e-05
+He  RI_aug-SZV-MOLOPT-GTH-tier-2_N_RI_005_s_p_d_f_g_h_i_2_1_0_0_0_0_0_error_2.3e-05
+    3
+     1   0   0   1   1
+      0.2510832014    1.0000000000
+     2   0   0   1   1
+      4.3909438760    1.0000000000
+     3   1   1   1   1
+      0.4780471223    1.0000000000
+
+# RI basis set for He, GTH pseudo, relative accuracy of RI-MP2: 3.7e-05
+He  RI_aug-DZVP-MOLOPT-GTH-tier-1_N_RI_009_s_p_d_f_g_h_i_3_2_0_0_0_0_0_error_3.7e-05
+    5
+     1   0   0   1   1
+      0.4983487381    1.0000000000
+     2   0   0   1   1
+      1.0400670478    1.0000000000
+     3   0   0   1   1
+      5.9940969559    1.0000000000
+     4   1   1   1   1
+      0.8718580254    1.0000000000
+     5   1   1   1   1
+      2.9302021448    1.0000000000
+
+
+# RI basis set for Li, GTH pseudo, relative accuracy of RI-MP2: 2.2e-04
+Li  RI_aug-SZV-MOLOPT-GTH-tier-1_N_RI_004_s_p_d_f_g_h_i_4_0_0_0_0_0_0_error_2.2e-04
+    4
+     1   0   0   1   1
+      0.0718366055    1.0000000000
+     2   0   0   1   1
+      0.6686484920    1.0000000000
+     3   0   0   1   1
+      3.5880134216    1.0000000000
+     4   0   0   1   1
+      8.9118001380    1.0000000000
+
+# RI basis set for Li, GTH pseudo, relative accuracy of RI-MP2: 9.9e-07
+Li  RI_aug-SZV-MOLOPT-GTH-tier-1_N_RI_005_s_p_d_f_g_h_i_5_0_0_0_0_0_0_error_9.9e-07
+    5
+     1   0   0   1   1
+      0.0766950814    1.0000000000
+     2   0   0   1   1
+      0.2653554354    1.0000000000
+     3   0   0   1   1
+      0.8930363213    1.0000000000
+     4   0   0   1   1
+      3.0758545304    1.0000000000
+     5   0   0   1   1
+     11.7554488231    1.0000000000
+
+# RI basis set for Be, GTH pseudo, relative accuracy of RI-MP2: 2.2e-05
+Be  RI_aug-SZV-MOLOPT-GTH-tier-2_N_RI_013_s_p_d_f_g_h_i_7_2_0_0_0_0_0_error_2.2e-05
+    9
+     1   0   0   1   1
+      0.1384575204    1.0000000000
+     2   0   0   1   1
+      0.3401026811    1.0000000000
+     3   0   0   1   1
+      0.8968037614    1.0000000000
+     4   0   0   1   1
+      2.1154605670    1.0000000000
+     5   0   0   1   1
+      4.8200329561    1.0000000000
+     6   0   0   1   1
+     10.9399368340    1.0000000000
+     7   0   0   1   1
+     24.8451211632    1.0000000000
+     8   1   1   1   1
+      0.2480703275    1.0000000000
+     9   1   1   1   1
+      1.9062014126    1.0000000000
+
+# RI basis set for B, GTH pseudo, relative accuracy of RI-MP2: 1.1e-06
+B  RI_aug-SZV-MOLOPT-GTH-tier-1_N_RI_009_s_p_d_f_g_h_i_3_2_0_0_0_0_0_error_1.1e-06
+    5
+     1   0   0   1   1
+      0.2247515604    1.0000000000
+     2   0   0   1   1
+      0.5295745019    1.0000000000
+     3   0   0   1   1
+      2.3282257841    1.0000000000
+     4   1   1   1   1
+      0.2466679699    1.0000000000
+     5   1   1   1   1
+      0.7741185711    1.0000000000
+
+# RI basis set for C, GTH pseudo, relative accuracy of RI-MP2: 1.5e-04
+C  RI_aug-SZV-MOLOPT-GTH-tier-1_N_RI_009_s_p_d_f_g_h_i_3_2_0_0_0_0_0_error_1.5e-04
+    5
+     1   0   0   1   1
+      0.3894604178    1.0000000000
+     2   0   0   1   1
+      0.7139302214    1.0000000000
+     3   0   0   1   1
+      4.1789804708    1.0000000000
+     4   1   1   1   1
+      0.7470769338    1.0000000000
+     5   1   1   1   1
+      4.0465450206    1.0000000000
+
+# RI basis set for C, GTH pseudo, relative accuracy of RI-MP2: 5.8e-06
+C  RI_aug-SZV-MOLOPT-GTH-tier-1_N_RI_013_s_p_d_f_g_h_i_4_3_0_0_0_0_0_error_5.8e-06
+    7
+     1   0   0   1   1
+      0.2658769280    1.0000000000
+     2   0   0   1   1
+      1.2216829520    1.0000000000
+     3   0   0   1   1
+      3.6756616690    1.0000000000
+     4   0   0   1   1
+     10.3102784631    1.0000000000
+     5   1   1   1   1
+      0.3412458968    1.0000000000
+     6   1   1   1   1
+      0.6117801020    1.0000000000
+     7   1   1   1   1
+      1.1329415195    1.0000000000
+
+# RI basis set for N, GTH pseudo, relative accuracy of RI-MP2: 2.9e-06
+N  RI_aug-SZV-MOLOPT-GTH-tier-1_N_RI_025_s_p_d_f_g_h_i_6_3_2_0_0_0_0_error_2.9e-06
+   11
+     1   0   0   1   1
+      0.2519569431    1.0000000000
+     2   0   0   1   1
+      0.6212773202    1.0000000000
+     3   0   0   1   1
+      1.3429327180    1.0000000000
+     4   0   0   1   1
+      2.7282879121    1.0000000000
+     5   0   0   1   1
+      5.7914535756    1.0000000000
+     6   0   0   1   1
+     12.3231690522    1.0000000000
+     7   1   1   1   1
+      0.4305591430    1.0000000000
+     8   1   1   1   1
+      0.8644058417    1.0000000000
+     9   1   1   1   1
+      1.7762711701    1.0000000000
+    10   2   2   1   1
+      0.4197489305    1.0000000000
+    11   2   2   1   1
+      3.1563086881    1.0000000000
+
+# RI basis set for O, GTH pseudo, relative accuracy of RI-MP2: 2.9e-03
+O  RI_aug-SZV-MOLOPT-GTH-tier-1_N_RI_018_s_p_d_f_g_h_i_4_3_1_0_0_0_0_error_2.9e-03
+    8
+     1   0   0   1   1
+      0.8464780035    1.0000000000
+     2   0   0   1   1
+      1.0350352887    1.0000000000
+     3   0   0   1   1
+      3.1095465926    1.0000000000
+     4   0   0   1   1
+     11.2898888231    1.0000000000
+     5   1   1   1   1
+      0.5879788018    1.0000000000
+     6   1   1   1   1
+      2.1111674799    1.0000000000
+     7   1   1   1   1
+     24.2696107974    1.0000000000
+     8   2   2   1   1
+      6.6587516328    1.0000000000
+
+# RI basis set for O, GTH pseudo, relative accuracy of RI-MP2: 2.5e-05
+O  RI_aug-SZV-MOLOPT-GTH-tier-1_N_RI_028_s_p_d_f_g_h_i_4_3_3_0_0_0_0_error_2.5e-05
+   10
+     1   0   0   1   1
+      0.3630807918    1.0000000000
+     2   0   0   1   1
+      1.2724684322    1.0000000000
+     3   0   0   1   1
+      5.1866364930    1.0000000000
+     4   0   0   1   1
+     17.7930009462    1.0000000000
+     5   1   1   1   1
+      0.4840743871    1.0000000000
+     6   1   1   1   1
+      2.1296098534    1.0000000000
+     7   1   1   1   1
+     23.0115662875    1.0000000000
+     8   2   2   1   1
+      0.4533340605    1.0000000000
+     9   2   2   1   1
+      3.4724673764    1.0000000000
+    10   2   2   1   1
+     14.1423218241    1.0000000000
+
+# RI basis set for F, GTH pseudo, relative accuracy of RI-MP2: 3.1e-05
+F  RI_aug-SZV-MOLOPT-GTH-tier-1_N_RI_028_s_p_d_f_g_h_i_4_3_3_0_0_0_0_error_3.1e-05
+   10
+     1   0   0   1   1
+      0.1792761332    1.0000000000
+     2   0   0   1   1
+      0.9971397266    1.0000000000
+     3   0   0   1   1
+      2.2897595569    1.0000000000
+     4   0   0   1   1
+     16.0769160176    1.0000000000
+     5   1   1   1   1
+      0.3361693812    1.0000000000
+     6   1   1   1   1
+      1.1522306019    1.0000000000
+     7   1   1   1   1
+      3.7339660260    1.0000000000
+     8   2   2   1   1
+      0.1851480256    1.0000000000
+     9   2   2   1   1
+      1.1884693288    1.0000000000
+    10   2   2   1   1
+      7.3682522638    1.0000000000
+
+# RI basis set for Ne, GTH pseudo, relative accuracy of RI-MP2: 4.6e-07
+Ne  RI_aug-SZV-MOLOPT-GTH-tier-1_N_RI_028_s_p_d_f_g_h_i_4_3_3_0_0_0_0_error_4.6e-07
+   10
+     1   0   0   1   1
+      0.3252438527    1.0000000000
+     2   0   0   1   1
+      2.0350438795    1.0000000000
+     3   0   0   1   1
+      6.8719796386    1.0000000000
+     4   0   0   1   1
+     30.7119715151    1.0000000000
+     5   1   1   1   1
+      0.3674280176    1.0000000000
+     6   1   1   1   1
+      3.9137970135    1.0000000000
+     7   1   1   1   1
+     31.8874827459    1.0000000000
+     8   2   2   1   1
+      0.4179362996    1.0000000000
+     9   2   2   1   1
+      4.5758920227    1.0000000000
+    10   2   2   1   1
+     14.4595507151    1.0000000000
+
+# RI basis set for Na, GTH pseudo, relative accuracy of RI-MP2: 3.9e-04
+Na  RI_aug-SZV-MOLOPT-GTH-tier-1_N_RI_023_s_p_d_f_g_h_i_4_3_2_0_0_0_0_error_3.9e-04
+    9
+     1   0   0   1   1
+      0.2042221341    1.0000000000
+     2   0   0   1   1
+      1.2613541082    1.0000000000
+     3   0   0   1   1
+      2.7110049424    1.0000000000
+     4   0   0   1   1
+     18.9898367233    1.0000000000
+     5   1   1   1   1
+      0.4191545782    1.0000000000
+     6   1   1   1   1
+      1.8847130724    1.0000000000
+     7   1   1   1   1
+      2.8477496994    1.0000000000
+     8   2   2   1   1
+      0.4383715760    1.0000000000
+     9   2   2   1   1
+      7.4592124223    1.0000000000
+
+# RI basis set for Na, GTH pseudo, relative accuracy of RI-MP2: 9.9e-05
+Na  RI_aug-SZV-MOLOPT-GTH-tier-1_N_RI_027_s_p_d_f_g_h_i_5_4_2_0_0_0_0_error_9.9e-05
+   11
+     1   0   0   1   1
+      0.0914204268    1.0000000000
+     2   0   0   1   1
+      0.3149992364    1.0000000000
+     3   0   0   1   1
+      1.1013491129    1.0000000000
+     4   0   0   1   1
+      3.7887402347    1.0000000000
+     5   0   0   1   1
+     12.9889421573    1.0000000000
+     6   1   1   1   1
+      0.1212445666    1.0000000000
+     7   1   1   1   1
+      1.2696746410    1.0000000000
+     8   1   1   1   1
+      4.6005123355    1.0000000000
+     9   1   1   1   1
+     33.7044604349    1.0000000000
+    10   2   2   1   1
+      0.2228698472    1.0000000000
+    11   2   2   1   1
+      8.5212909755    1.0000000000
+
+# RI basis set for Mg, GTH pseudo, relative accuracy of RI-MP2: 8.9e-05
+Mg  RI_aug-SZV-MOLOPT-GTH-tier-1_N_RI_017_s_p_d_f_g_h_i_6_2_1_0_0_0_0_error_8.9e-05
+    9
+     1   0   0   1   1
+      0.1130276032    1.0000000000
+     2   0   0   1   1
+      0.1690543542    1.0000000000
+     3   0   0   1   1
+      1.0577326499    1.0000000000
+     4   0   0   1   1
+      5.2035777079    1.0000000000
+     5   0   0   1   1
+     12.0188093377    1.0000000000
+     6   0   0   1   1
+     47.1679933440    1.0000000000
+     7   1   1   1   1
+      0.1510741616    1.0000000000
+     8   1   1   1   1
+      8.9844443001    1.0000000000
+     9   2   2   1   1
+     12.2218992651    1.0000000000
+
+# RI basis set for Al, GTH pseudo, relative accuracy of RI-MP2: 2.7e-05
+Al  RI_aug-SZV-MOLOPT-GTH-tier-1_N_RI_011_s_p_d_f_g_h_i_5_2_0_0_0_0_0_error_2.7e-05
+    7
+     1   0   0   1   1
+      0.1739611441    1.0000000000
+     2   0   0   1   1
+      0.3227357065    1.0000000000
+     3   0   0   1   1
+      0.6045736967    1.0000000000
+     4   0   0   1   1
+      1.1090239034    1.0000000000
+     5   0   0   1   1
+      2.0030058766    1.0000000000
+     6   1   1   1   1
+      0.2269107801    1.0000000000
+     7   1   1   1   1
+      0.3343135705    1.0000000000
+
+# RI basis set for Si, GTH pseudo, relative accuracy of RI-MP2: 6.5e-05
+Si  RI_aug-SZV-MOLOPT-GTH-tier-1_N_RI_020_s_p_d_f_g_h_i_4_2_2_0_0_0_0_error_6.5e-05
+    8
+     1   0   0   1   1
+      0.2338760173    1.0000000000
+     2   0   0   1   1
+      0.3831666276    1.0000000000
+     3   0   0   1   1
+      0.7605029697    1.0000000000
+     4   0   0   1   1
+      1.6782674295    1.0000000000
+     5   1   1   1   1
+      0.2078258040    1.0000000000
+     6   1   1   1   1
+      0.3791298586    1.0000000000
+     7   2   2   1   1
+      0.1773123090    1.0000000000
+     8   2   2   1   1
+      0.4798137064    1.0000000000
+
+# RI basis set for P, GTH pseudo, relative accuracy of RI-MP2: 5.0e-07
+P  RI_aug-SZV-MOLOPT-GTH-tier-1_N_RI_029_s_p_d_f_g_h_i_5_3_3_0_0_0_0_error_5.0e-07
+   11
+     1   0   0   1   1
+      0.2264384756    1.0000000000
+     2   0   0   1   1
+      0.4344196461    1.0000000000
+     3   0   0   1   1
+      0.8223740345    1.0000000000
+     4   0   0   1   1
+      1.5077023541    1.0000000000
+     5   0   0   1   1
+      2.7327349996    1.0000000000
+     6   1   1   1   1
+      0.2189448767    1.0000000000
+     7   1   1   1   1
+      0.6334809889    1.0000000000
+     8   1   1   1   1
+      2.5044744624    1.0000000000
+     9   2   2   1   1
+      0.2437382020    1.0000000000
+    10   2   2   1   1
+      0.8118398071    1.0000000000
+    11   2   2   1   1
+      2.7176598854    1.0000000000
+
+# RI basis set for S, GTH pseudo, relative accuracy of RI-MP2: 4.1e-04
+S  RI_aug-SZV-MOLOPT-GTH-tier-1_N_RI_021_s_p_d_f_g_h_i_5_2_2_0_0_0_0_error_4.1e-04
+    9
+     1   0   0   1   1
+      0.2719985690    1.0000000000
+     2   0   0   1   1
+      0.4985762835    1.0000000000
+     3   0   0   1   1
+      0.9414661448    1.0000000000
+     4   0   0   1   1
+      1.7990519806    1.0000000000
+     5   0   0   1   1
+      3.4347794492    1.0000000000
+     6   1   1   1   1
+      0.4038660946    1.0000000000
+     7   1   1   1   1
+      0.7042931834    1.0000000000
+     8   2   2   1   1
+      0.2956428339    1.0000000000
+     9   2   2   1   1
+      0.8367318741    1.0000000000
+
+# RI basis set for S, GTH pseudo, relative accuracy of RI-MP2: 2.0e-05
+S  RI_aug-SZV-MOLOPT-GTH-tier-1_N_RI_030_s_p_d_f_g_h_i_6_3_3_0_0_0_0_error_2.0e-05
+   12
+     1   0   0   1   1
+      0.2861866308    1.0000000000
+     2   0   0   1   1
+      0.4806441454    1.0000000000
+     3   0   0   1   1
+      0.8239942582    1.0000000000
+     4   0   0   1   1
+      1.3583834636    1.0000000000
+     5   0   0   1   1
+      2.2006519447    1.0000000000
+     6   0   0   1   1
+      3.5693992760    1.0000000000
+     7   1   1   1   1
+      0.5118837336    1.0000000000
+     8   1   1   1   1
+      0.7255339134    1.0000000000
+     9   1   1   1   1
+      3.9679408838    1.0000000000
+    10   2   2   1   1
+      0.2801662220    1.0000000000
+    11   2   2   1   1
+      0.8502722312    1.0000000000
+    12   2   2   1   1
+      2.1711077836    1.0000000000
+
+# RI basis set for Cl, GTH pseudo, relative accuracy of RI-MP2: 4.7e-07
+Cl  RI_aug-SZV-MOLOPT-GTH-tier-1_N_RI_036_s_p_d_f_g_h_i_6_5_3_0_0_0_0_error_4.7e-07
+   14
+     1   0   0   1   1
+      0.2944151125    1.0000000000
+     2   0   0   1   1
+      0.4929990170    1.0000000000
+     3   0   0   1   1
+      0.8230806720    1.0000000000
+     4   0   0   1   1
+      1.3695021477    1.0000000000
+     5   0   0   1   1
+      2.2772547135    1.0000000000
+     6   0   0   1   1
+      3.7868796207    1.0000000000
+     7   1   1   1   1
+      0.3587680714    1.0000000000
+     8   1   1   1   1
+      0.6675867807    1.0000000000
+     9   1   1   1   1
+      1.2268132432    1.0000000000
+    10   1   1   1   1
+      2.2018397559    1.0000000000
+    11   1   1   1   1
+      3.9494407946    1.0000000000
+    12   2   2   1   1
+      0.2716615212    1.0000000000
+    13   2   2   1   1
+      1.1099156029    1.0000000000
+    14   2   2   1   1
+      3.8918167791    1.0000000000
+
+# RI basis set for Ar, GTH pseudo, relative accuracy of RI-MP2: 9.5e-07
+Ar  RI_aug-SZV-MOLOPT-GTH-tier-1_N_RI_039_s_p_d_f_g_h_i_7_4_4_0_0_0_0_error_9.5e-07
+   15
+     1   0   0   1   1
+      0.2522718962    1.0000000000
+     2   0   0   1   1
+      0.4357378904    1.0000000000
+     3   0   0   1   1
+      0.7723695009    1.0000000000
+     4   0   0   1   1
+      1.3308359924    1.0000000000
+     5   0   0   1   1
+      2.2736839581    1.0000000000
+     6   0   0   1   1
+      3.8523001818    1.0000000000
+     7   0   0   1   1
+      6.4521663188    1.0000000000
+     8   1   1   1   1
+      0.3203997456    1.0000000000
+     9   1   1   1   1
+      1.1316381879    1.0000000000
+    10   1   1   1   1
+      2.1531912110    1.0000000000
+    11   1   1   1   1
+      5.0880053927    1.0000000000
+    12   2   2   1   1
+      0.2479670867    1.0000000000
+    13   2   2   1   1
+      0.8128704555    1.0000000000
+    14   2   2   1   1
+      2.3086638537    1.0000000000
+    15   2   2   1   1
+      6.4684997005    1.0000000000
+
+# RI basis set for K, GTH pseudo, relative accuracy of RI-MP2: 9.7e-07
+K  RI_aug-SZV-MOLOPT-GTH-tier-1_N_RI_039_s_p_d_f_g_h_i_7_4_4_0_0_0_0_error_9.7e-07
+   15
+     1   0   0   1   1
+      0.0523132345    1.0000000000
+     2   0   0   1   1
+      0.1126408315    1.0000000000
+     3   0   0   1   1
+      0.2286751230    1.0000000000
+     4   0   0   1   1
+      0.5315893523    1.0000000000
+     5   0   0   1   1
+      1.2236920221    1.0000000000
+     6   0   0   1   1
+      2.4248661669    1.0000000000
+     7   0   0   1   1
+      4.7237640263    1.0000000000
+     8   1   1   1   1
+      0.0692771138    1.0000000000
+     9   1   1   1   1
+      0.3126876664    1.0000000000
+    10   1   1   1   1
+      1.6351477959    1.0000000000
+    11   1   1   1   1
+      3.2897970551    1.0000000000
+    12   2   2   1   1
+      0.0626856513    1.0000000000
+    13   2   2   1   1
+      0.1870815712    1.0000000000
+    14   2   2   1   1
+      0.5306857296    1.0000000000
+    15   2   2   1   1
+      1.6304930463    1.0000000000
+
+# RI basis set for Ca, GTH pseudo, relative accuracy of RI-MP2: 2.3e-05
+Ca  RI_aug-SZV-MOLOPT-GTH-tier-1_N_RI_027_s_p_d_f_g_h_i_5_4_2_0_0_0_0_error_2.3e-05
+   11
+     1   0   0   1   1
+      0.0908289856    1.0000000000
+     2   0   0   1   1
+      0.3738660721    1.0000000000
+     3   0   0   1   1
+      1.3327708213    1.0000000000
+     4   0   0   1   1
+      3.9698765900    1.0000000000
+     5   0   0   1   1
+      8.8388780359    1.0000000000
+     6   1   1   1   1
+      0.1133273610    1.0000000000
+     7   1   1   1   1
+      0.4684003395    1.0000000000
+     8   1   1   1   1
+      2.7773718529    1.0000000000
+     9   1   1   1   1
+      3.9917642739    1.0000000000
+    10   2   2   1   1
+      0.3150447721    1.0000000000
+    11   2   2   1   1
+      1.8845547511    1.0000000000
+
+# RI basis set for Sc, GTH pseudo, relative accuracy of RI-MP2: 9.7e-05
+Sc  RI_aug-SZV-MOLOPT-GTH-tier-1_N_RI_067_s_p_d_f_g_h_i_5_4_4_3_1_0_0_error_9.7e-05
+   17
+     1   0   0   1   1
+      0.1057283809    1.0000000000
+     2   0   0   1   1
+      0.3134484875    1.0000000000
+     3   0   0   1   1
+      1.1975688675    1.0000000000
+     4   0   0   1   1
+      4.0290002330    1.0000000000
+     5   0   0   1   1
+     12.2809262818    1.0000000000
+     6   1   1   1   1
+      0.1252865093    1.0000000000
+     7   1   1   1   1
+      0.3724163829    1.0000000000
+     8   1   1   1   1
+      1.3949034231    1.0000000000
+     9   1   1   1   1
+      3.2218709126    1.0000000000
+    10   2   2   1   1
+      0.1293827835    1.0000000000
+    11   2   2   1   1
+      0.3481308154    1.0000000000
+    12   2   2   1   1
+      1.6248774828    1.0000000000
+    13   2   2   1   1
+      5.9579572428    1.0000000000
+    14   3   3   1   1
+      0.2244720061    1.0000000000
+    15   3   3   1   1
+      1.7112885630    1.0000000000
+    16   3   3   1   1
+      5.8077182931    1.0000000000
+    17   4   4   1   1
+      1.0275262958    1.0000000000
+
+
+#aug_SVZ_tier2 RI:
+
+# RI basis set for H, GTH pseudo, relative accuracy of RI-MP2: 5.7e-05
+H  RI_aug-SZV-MOLOPT-GTH-tier-2_N_RI_006_s_p_d_f_g_h_i_3_1_0_0_0_0_0_error_5.7e-05
+    4
+     1   0   0   1   1
+      0.2995587186    1.0000000000
+     2   0   0   1   1
+      0.9847979350    1.0000000000
+     3   0   0   1   1
+      3.3907876601    1.0000000000
+     4   1   1   1   1
+      0.4561970956    1.0000000000
+
+# RI basis set for C, GTH pseudo, relative accuracy of RI-MP2: 3.2e-05
+C  RI_aug-SZV-MOLOPT-GTH-tier-2_N_RI_030_s_p_d_f_g_h_i_4_3_2_1_0_0_0_error_3.2e-05
+   10
+     1   0   0   1   1
+      0.1918483733    1.0000000000
+     2   0   0   1   1
+      0.7363004715    1.0000000000
+     3   0   0   1   1
+      2.9175923122    1.0000000000
+     4   0   0   1   1
+      9.4481678637    1.0000000000
+     5   1   1   1   1
+      0.2818848247    1.0000000000
+     6   1   1   1   1
+      0.9845762800    1.0000000000
+     7   1   1   1   1
+      2.4754088575    1.0000000000
+     8   2   2   1   1
+      0.3476288367    1.0000000000
+     9   2   2   1   1
+      1.8222158278    1.0000000000
+    10   3   3   1   1
+      0.4979669328    1.0000000000
+
+# RI basis set for N, GTH pseudo, relative accuracy of RI-MP2: 6.2e-05
+N  RI_aug-SZV-MOLOPT-GTH-tier-2_N_RI_033_s_p_d_f_g_h_i_7_3_2_1_0_0_0_error_6.2e-05
+   13
+     1   0   0   1   1
+      0.1779932254    1.0000000000
+     2   0   0   1   1
+      0.3527890937    1.0000000000
+     3   0   0   1   1
+      0.7226207617    1.0000000000
+     4   0   0   1   1
+      1.4755686684    1.0000000000
+     5   0   0   1   1
+      2.9702981111    1.0000000000
+     6   0   0   1   1
+      6.0327157693    1.0000000000
+     7   0   0   1   1
+     12.2417873757    1.0000000000
+     8   1   1   1   1
+      0.1287549881    1.0000000000
+     9   1   1   1   1
+      0.6680950019    1.0000000000
+    10   1   1   1   1
+      1.8641932539    1.0000000000
+    11   2   2   1   1
+      0.6040851611    1.0000000000
+    12   2   2   1   1
+      3.0002841729    1.0000000000
+    13   3   3   1   1
+      1.0032981174    1.0000000000
+
+# RI basis set for O, GTH pseudo, relative accuracy of RI-MP2: 6.2e-05
+O  RI_aug-SZV-MOLOPT-GTH-tier-2_N_RI_023_s_p_d_f_g_h_i_4_3_2_0_0_0_0_error_6.2e-05
+    9
+     1   0   0   1   1
+      0.2974941054    1.0000000000
+     2   0   0   1   1
+      1.1579292499    1.0000000000
+     3   0   0   1   1
+      2.1257663646    1.0000000000
+     4   0   0   1   1
+     10.7192485319    1.0000000000
+     5   1   1   1   1
+      0.4505275391    1.0000000000
+     6   1   1   1   1
+      1.1680338750    1.0000000000
+     7   1   1   1   1
+      2.8943808307    1.0000000000
+     8   2   2   1   1
+      0.6575805140    1.0000000000
+     9   2   2   1   1
+      5.3061204329    1.0000000000
+
+#aug_DVZP_tier2 RI:
+
+# RI basis set for H, GTH pseudo, relative accuracy of RI-MP2: 3.4e-05
+H  RI_aug-DZVP-MOLOPT-GTH-tier-2_N_RI_009_s_p_d_f_g_h_i_3_2_0_0_0_0_0_error_3.4e-05
+    5
+     1   0   0   1   1
+      0.2265056659    1.0000000000
+     2   0   0   1   1
+      1.2560438245    1.0000000000
+     3   0   0   1   1
+      4.6598805067    1.0000000000
+     4   1   1   1   1
+      0.4221961154    1.0000000000
+     5   1   1   1   1
+      1.8965555430    1.0000000000
+
+# RI basis set for C, GTH pseudo, relative accuracy of RI-MP2: 8.5e-05
+C  RI_aug-DZVP-MOLOPT-GTH-tier-2_N_RI_048_s_p_d_f_g_h_i_7_4_3_2_0_0_0_error_8.5e-05
+   16
+     1   0   0   1   1
+      0.0757525033    1.0000000000
+     2   0   0   1   1
+      0.1717543906    1.0000000000
+     3   0   0   1   1
+      0.3871118248    1.0000000000
+     4   0   0   1   1
+      0.8759177373    1.0000000000
+     5   0   0   1   1
+      1.9984436478    1.0000000000
+     6   0   0   1   1
+      4.5153342795    1.0000000000
+     7   0   0   1   1
+     10.2112873010    1.0000000000
+     8   1   1   1   1
+      0.0987020424    1.0000000000
+     9   1   1   1   1
+      0.5400245720    1.0000000000
+    10   1   1   1   1
+      1.2497932266    1.0000000000
+    11   1   1   1   1
+      7.7791447071    1.0000000000
+    12   2   2   1   1
+      0.0622549308    1.0000000000
+    13   2   2   1   1
+      0.6912681313    1.0000000000
+    14   2   2   1   1
+      2.0931556737    1.0000000000
+    15   3   3   1   1
+      0.3376201366    1.0000000000
+    16   3   3   1   1
+      1.3457000507    1.0000000000
+  
+# RI basis set for N, GTH pseudo, relative accuracy of RI-MP2: 6.4e-05
+N  RI_aug-DZVP-MOLOPT-GTH-tier-2_N_RI_044_s_p_d_f_g_h_i_4_3_3_1_1_0_0_error_6.4e-05
+   12
+     1   0   0   1   1
+      0.2163096346    1.0000000000
+     2   0   0   1   1
+      0.7136476702    1.0000000000
+     3   0   0   1   1
+      1.8031743905    1.0000000000
+     4   0   0   1   1
+      3.9119756771    1.0000000000
+     5   1   1   1   1
+      0.2685160683    1.0000000000
+     6   1   1   1   1
+      1.1802041390    1.0000000000
+     7   1   1   1   1
+      1.9666986882    1.0000000000
+     8   2   2   1   1
+      0.2651301784    1.0000000000
+     9   2   2   1   1
+      1.0744923046    1.0000000000
+    10   2   2   1   1
+      3.4468775570    1.0000000000
+    11   3   3   1   1
+      1.2698362525    1.0000000000
+    12   4   4   1   1
+      1.1494510535    1.0000000000
+      
+# RI basis set for O, GTH pseudo, relative accuracy of RI-MP2: 6.1e-05
+O  RI_aug-DZVP-MOLOPT-GTH-tier-2_N_RI_067_s_p_d_f_g_h_i_5_4_4_3_1_0_0_error_6.1e-05
+   17
+     1   0   0   1   1
+      0.1325610270    1.0000000000
+     2   0   0   1   1
+      0.5134602092    1.0000000000
+     3   0   0   1   1
+      1.5102674400    1.0000000000
+     4   0   0   1   1
+      3.2706720935    1.0000000000
+     5   0   0   1   1
+     15.6189906193    1.0000000000
+     6   1   1   1   1
+      0.2243835293    1.0000000000
+     7   1   1   1   1
+      0.9399626826    1.0000000000
+     8   1   1   1   1
+      2.6263535708    1.0000000000
+     9   1   1   1   1
+      4.3071459988    1.0000000000
+    10   2   2   1   1
+      0.1759840772    1.0000000000
+    11   2   2   1   1
+      0.8098080947    1.0000000000
+    12   2   2   1   1
+      3.1131134547    1.0000000000
+    13   2   2   1   1
+      4.0308734601    1.0000000000
+    14   3   3   1   1
+      0.1053639110    1.0000000000
+    15   3   3   1   1
+      1.2809961806    1.0000000000
+    16   3   3   1   1
+      3.8770705766    1.0000000000
+    17   4   4   1   1
+      3.4037891694    1.0000000000
+
+#aug-DZVP-tier-1 RI:
+
+# RI basis set for C, GTH pseudo, relative accuracy of RI-MP2: 2.2e-05
+C  RI_aug-DZVP-MOLOPT-GTH-tier-1_N_RI_051_s_p_d_f_g_h_i_4_3_3_2_1_0_0_error_2.2e-05
+   13
+     1   0   0   1   1
+      0.1112522051    1.0000000000
+     2   0   0   1   1
+      0.3839406130    1.0000000000
+     3   0   0   1   1
+      0.8447624014    1.0000000000
+     4   0   0   1   1
+      4.3331362454    1.0000000000
+     5   1   1   1   1
+      0.2361481307    1.0000000000
+     6   1   1   1   1
+      0.8237847241    1.0000000000
+     7   1   1   1   1
+      1.3313429950    1.0000000000
+     8   2   2   1   1
+      0.1708207752    1.0000000000
+     9   2   2   1   1
+      0.7275700626    1.0000000000
+    10   2   2   1   1
+      2.1867986801    1.0000000000
+    11   3   3   1   1
+      0.0927315539    1.0000000000
+    12   3   3   1   1
+      1.0965333478    1.0000000000
+    13   4   4   1   1
+      1.6846273284    1.0000000000
+
+# RI basis set for N, GTH pseudo, relative accuracy of RI-MP2: 4.6e-05
+N  RI_aug-DZVP-MOLOPT-GTH-tier-1_N_RI_042_s_p_d_f_g_h_i_4_3_3_2_0_0_0_error_4.6e-05
+   12
+     1   0   0   1   1
+      0.1536007748    1.0000000000
+     2   0   0   1   1
+      0.8013800021    1.0000000000
+     3   0   0   1   1
+      1.5094585197    1.0000000000
+     4   0   0   1   1
+      6.6093910800    1.0000000000
+     5   1   1   1   1
+      0.2506402747    1.0000000000
+     6   1   1   1   1
+      1.1165960502    1.0000000000
+     7   1   1   1   1
+      2.1749906704    1.0000000000
+     8   2   2   1   1
+      0.2346700809    1.0000000000
+     9   2   2   1   1
+      1.1062890112    1.0000000000
+    10   2   2   1   1
+      3.0651250516    1.0000000000
+    11   3   3   1   1
+      0.1488520001    1.0000000000
+    12   3   3   1   1
+      1.4024243476    1.0000000000
+
+# RI basis set for O, GTH pseudo, relative accuracy of RI-MP2: 6.2e-05
+O  RI_aug-DZVP-MOLOPT-GTH-tier-1_N_RI_044_s_p_d_f_g_h_i_6_3_3_2_0_0_0_error_6.2e-05
+   14
+     1   0   0   1   1
+      0.1207566223    1.0000000000
+     2   0   0   1   1
+      0.3580855902    1.0000000000
+     3   0   0   1   1
+      0.9238622337    1.0000000000
+     4   0   0   1   1
+      2.2362033930    1.0000000000
+     5   0   0   1   1
+      6.6895231810    1.0000000000
+     6   0   0   1   1
+     19.6453984029    1.0000000000
+     7   1   1   1   1
+      0.4645493866    1.0000000000
+     8   1   1   1   1
+      1.2643065416    1.0000000000
+     9   1   1   1   1
+      2.7601312369    1.0000000000
+    10   2   2   1   1
+      0.5865837237    1.0000000000
+    11   2   2   1   1
+      1.8305076344    1.0000000000
+    12   2   2   1   1
+      5.6403265932    1.0000000000
+    13   3   3   1   1
+      1.3228676086    1.0000000000
+    14   3   3   1   1
+      5.0193047936    1.0000000000
+
+
+# accuracy on lowest five BSE excitation energies in Thiel's set: 0.052 eV
+# basis set size: 3 s-functions, 1 p-function, making in total 6 basis functions
+ H  aug-SZV-MOLOPT-GTH-tier-2
+1
+ 2 0 1 7 3 1
+ 0.0500000000  0.0000000000  2.2953872391 -0.3797803180  0.8332346902
+ 0.0821931844 -0.1316128615  0.7105127788  0.9445042476 -0.1802547298
+ 0.2391161505 -0.4531821866 -0.0827391097 -0.1645689441  0.1050920722
+ 0.4500000000  0.0000000000 -0.6173002824 -0.0475184402  0.0186448906
+ 0.7915015391 -0.4438188612 -0.1145779508 -0.0308328655 -0.0034678020
+ 2.6802228681 -0.1222022121  0.0000037538 -0.0435903941  0.0042741062
+10.0684682285 -0.0339174449  0.0000000000  0.0000000000  0.0000000000
+
+# basis set size: 3 s-functions, 2 p-functions, making in total 9 basis functions
+# aug-DZVP-MOLOPT-GTH-tier-1 is identical to aug-DZVP-MOLOPT-GTH-tier-2
+ H  aug-DZVP-MOLOPT-GTH-tier-1
+1
+  2 0 1 6 3 2
+ 0.0400000000  0.0000000000  0.0000000000 -0.6814257167  0.0000000000  1.9664233722
+ 0.0821931844 -0.1316128615  0.5227087380  0.6595339523  0.8690318540 -2.7599647638
+ 0.2391161505 -0.4531821866  0.0494796212 -0.1998406218  0.5479196782 -0.7722291742
+ 0.7915015391 -0.4438188612 -1.1557071155 -0.0288817150  0.4771832409 -0.0431407499
+ 2.6802228681 -0.1222022121  0.8433183289  0.0000000000  0.1224495665  0.0000000000
+10.0684682285 -0.0339174449  0.0591937755  0.0000000000  0.0099051344  0.0000000000
+
+# basis set size: 3 s-functions, 2 p-functions, making in total 9 basis functions
+# aug-DZVP-MOLOPT-GTH-tier-1 is identical to aug-DZVP-MOLOPT-GTH-tier-2
+ H  aug-DZVP-MOLOPT-GTH-tier-2
+1
+  2 0 1 6 3 2
+ 0.0400000000  0.0000000000  0.0000000000 -0.6814257167  0.0000000000  1.9664233722
+ 0.0821931844 -0.1316128615  0.5227087380  0.6595339523  0.8690318540 -2.7599647638
+ 0.2391161505 -0.4531821866  0.0494796212 -0.1998406218  0.5479196782 -0.7722291742
+ 0.7915015391 -0.4438188612 -1.1557071155 -0.0288817150  0.4771832409 -0.0431407499
+ 2.6802228681 -0.1222022121  0.8433183289  0.0000000000  0.1224495665  0.0000000000
+10.0684682285 -0.0339174449  0.0591937755  0.0000000000  0.0099051344  0.0000000000
+
+# accuracy on lowest five BSE excitation energies in Thiel's set: 0.052 eV
+# basis set size: 2 s-functions, 2 p-functions, 1 d-function, making in total 13 basis functions
+C  aug-SZV-MOLOPT-GTH-tier-2
+1
+2 0 2 6 2 2 1
+ 0.0700000000  0.0000000000  9.5336528884  0.0000000000  0.2963420731 -0.0024409818
+ 0.1282122547 -0.1339908628 -1.8688950242 -0.2885276736  0.0975098286  0.2872244952
+ 0.3481570864 -0.6109264216 -1.7535242514 -0.4153371392  0.1362503383  0.0576839227
+ 0.7699114548 -0.3213968794 -0.0355301459 -0.4131417301 -0.0422611633  0.0395951647
+ 2.1130163905  0.1531421941  0.0000000000 -0.2004702557  0.0000000000  0.0000000000
+ 5.6053307517  0.1115328819  0.0000000000 -0.0648689785  0.0000000000  0.0000000000
+
+# generated from tier-2 basis set by removing the highest l-quantum number
+# basis set size: 3 s-functions, 3 p-functions, 2 d-functions, making in total 22 basis functions
+ C  aug-DZVP-MOLOPT-GTH-tier-1
+1
+2 0 2 7 3 3 2
+  0.0302867530  0.0089664773  0.0833821920 -2.4873348202  0.0049980597  0.2481721755  3.4673173454 -0.0051424309 -1.3928498568
+  0.0751447255  0.0061744640 -0.7420860516  2.2793547512  0.0562565577  0.7339025317 -0.1732196064  0.3463741241  0.2131457020
+  0.1786174143  0.3719113738  0.1848807121 -8.7235757227  0.2715418420  0.7212474758  0.6975361114  0.3891482350  0.5016287208
+  0.4783163309  0.8304470353  0.8230513368  0.8275576181  0.3559291510  0.3945940457 -0.2708760221  0.7107308570  0.0982228786
+  1.0454569572  0.0644649814 -0.4214183792  0.0000000000  0.2159081373 -0.5280567570 -0.0216756049  0.6193305612  0.0000000000
+  2.6251960648 -0.1748666211  0.1474408560  0.0000000000  0.1141979309 -0.0767439515  0.0000000000  0.0710475748  0.0000000000
+  6.1326247679 -0.1055765637  0.0248505876  0.0000000000  0.0350981084 -0.0567129990  0.0000000000  0.0374694258  0.0000000000
+
+# basis set size: 3 s-functions, 3 p-functions, 2 d-functions, 1 f-function, making in total 29 basis functions
+ C  aug-DZVP-MOLOPT-GTH-tier-2
+1
+ 2 0 3 7 3 3 2 1
+ 0.0302867530  0.0089664773  0.0833821920 -2.4873348202  0.0049980597  0.2481721755  3.4673173454 -0.0051424309 -1.3928498568 -2.3623841455
+ 0.0751447255  0.0061744640 -0.7420860516  2.2793547512  0.0562565577  0.7339025317 -0.1732196064  0.3463741241  0.2131457020  0.0354048932
+ 0.1786174143  0.3719113738  0.1848807121 -8.7235757227  0.2715418420  0.7212474758  0.6975361114  0.3891482350  0.5016287208  4.3815482531
+ 0.4783163309  0.8304470353  0.8230513368  0.8275576181  0.3559291510  0.3945940457 -0.2708760221  0.7107308570  0.0982228786  0.4343255712
+ 1.0454569572  0.0644649814 -0.4214183792  0.0000000000  0.2159081373 -0.5280567570 -0.0216756049  0.6193305612  0.0000000000 -0.6214628815
+ 2.6251960648 -0.1748666211  0.1474408560  0.0000000000  0.1141979309 -0.0767439515  0.0000000000  0.0710475748  0.0000000000  0.0165196531
+ 6.1326247679 -0.1055765637  0.0248505876  0.0000000000  0.0350981084 -0.0567129990  0.0000000000  0.0374694258  0.0000000000  0.0000000000
+
+# accuracy on lowest five BSE excitation energies in Thiel's set: 0.052 eV
+# basis set size: 2 s-functions, 2 p-functions, 1 d-function, making in total 13 basis functions
+N  aug-SZV-MOLOPT-GTH-tier-2
+1
+ 2 0 2 6 2 2 1
+ 0.0700000000  0.0000000000 55.2168663850  0.0000000000  0.1930047573 14.1203375999
+ 0.1120121090 -0.1395623835 -1.8966421439 -0.1179360081  0.0570465072 -3.8037976747
+ 0.3338022004 -0.5841422339  3.1812839077 -0.3120396752  0.3098766632  7.8081286947
+ 0.8885749672 -0.4450774226  5.2776231899 -0.3173651656  0.0157635444  5.1941577054
+ 2.5426371110  0.0972945165  0.0000000000 -0.1657525162  0.0000000000  0.0000000000
+ 7.3419880518  0.1137891565  0.0000000000 -0.0537443304  0.0000000000  0.0000000000
+
+# generated from tier-2 basis set by removing the highest l-quantum number
+# basis set size: 3 s-functions, 3 p-functions, 2 d-functions, making in total 22 basis functions
+ N  aug-DZVP-MOLOPT-GTH-tier-1
+1
+2 0 2 7 3 3 2
+  0.0391938349  0.0103939762  0.0534523798  2.7092629073 -0.0001817949  0.0397207743  1.3961118495 -0.0191504557 12.7259540617
+  0.0845828887  0.0311967386  0.4935567902  8.2249036599  0.0546739289  0.5939513686 -0.2441935122 -0.0494528638  0.2462504899
+  0.2228510919  0.3464569810  0.6067915745  1.7534582047  0.2497273653  0.7014557291  0.0925492426  0.1889357542  2.5471718528
+  0.5866307381  0.5585834877 -0.5477648847 -0.2606963943  0.3761054815 -0.1924053675  3.3995399723  0.8883740551 -2.7190377000
+  1.5128803201  0.0948448578 -0.0360134328  4.6421876385  0.2381233303 -0.0942280320 -0.4308751745  0.3240514725  0.0000000000
+  3.8822249407 -0.1218767303  0.1017417518  0.0000000000  0.1091263551 -0.0311770590  0.0000000000  0.0379324097  0.0000000000
+  9.0427303973 -0.0577111577  0.0556186656  0.0000000000  0.0314695269 -0.0126431720  0.0000000000  0.0178527189  0.0000000000
+
+# basis set size: 3 s-functions, 3 p-functions, 2 d-functions, 1 f-function, making in total 29 basis functions
+ N  aug-DZVP-MOLOPT-GTH-tier-2
+1
+ 2 0 3 7 3 3 2 1
+ 0.0391938349  0.0103939762  0.0534523798  2.7092629073 -0.0001817949  0.0397207743  1.3961118495 -0.0191504557 12.7259540617 -1.4562448774
+ 0.0845828887  0.0311967386  0.4935567902  8.2249036599  0.0546739289  0.5939513686 -0.2441935122 -0.0494528638  0.2462504899 -0.0153470098
+ 0.2228510919  0.3464569810  0.6067915745  1.7534582047  0.2497273653  0.7014557291  0.0925492426  0.1889357542  2.5471718528 -0.0109635508
+ 0.5866307381  0.5585834877 -0.5477648847 -0.2606963943  0.3761054815 -0.1924053675  3.3995399723  0.8883740551 -2.7190377000  2.4727504338
+ 1.5128803201  0.0948448578 -0.0360134328  4.6421876385  0.2381233303 -0.0942280320 -0.4308751745  0.3240514725  0.0000000000  0.2988466953
+ 3.8822249407 -0.1218767303  0.1017417518  0.0000000000  0.1091263551 -0.0311770590  0.0000000000  0.0379324097  0.0000000000  0.0341776659
+ 9.0427303973 -0.0577111577  0.0556186656  0.0000000000  0.0314695269 -0.0126431720  0.0000000000  0.0178527189  0.0000000000  0.0000000000
+
+# accuracy on lowest five BSE excitation energies in Thiel's set: 0.052 eV
+# basis set size: 2 s-functions, 2 p-functions, 1 d-function, making in total 13 basis functions
+ O  aug-SZV-MOLOPT-GTH-tier-2
+1
+ 2 0 2 6 2 2 1
+ 0.0900000000  0.0000000000 -1.2559033052  0.0000000000  1.1666324175 44.7376014820
+ 0.1624916150 -0.2423515378 -2.5402626447 -0.2573889830  1.9487606063 -9.8332346383
+ 0.4969550437 -0.8527917909 -1.4039608936 -0.4542660860  5.6345301053 -0.3830120705
+ 1.3884011887 -0.4343482317  1.0697916175 -0.3777269828  0.7302781111 -0.7391957096
+ 3.8496210720  0.1399337043  0.0000000000 -0.1900875117  0.0000000000  0.0000000000
+10.3892280183  0.1262407229  0.0000000000 -0.0613020372  0.0000000000  0.0000000000
+
+# generated from tier-2 basis set by removing the highest l-quantum number
+# basis set size: 3 s-functions, 3 p-functions, 2 d-functions, making in total 22 basis functions
+ O  aug-DZVP-MOLOPT-GTH-tier-1
+1
+2 0 2 7 3 3 2
+  0.0467609183 -0.0002559458  0.0038258496  0.0335786214  0.0097261106  0.0324989794 -0.0199617103 -0.0057717366  0.0232662614
+  0.1429773309  0.0927158336  0.3872014586  0.8215226852  0.1730398693  0.7174659197 -0.3609199730  0.3183468344  0.3075339470
+  0.3523162465  0.4503537826  0.1867600067  2.0582997838  0.2947086452  0.4848483764 -0.2462067404  0.3076561142  0.5002719744
+  0.8323815756  0.4629644850 -0.5726706662 -0.4466820640  0.3526399103 -0.4736748584 -0.0389264760  1.0633441895  1.5135238627
+  2.0483980399  0.1181758894 -0.0537324064  0.0000000000  0.2510936703 -0.2137194646  0.0000000000  0.2905764992  0.0880356339
+  5.1081502874 -0.1295979233  0.1108859022  0.0000000000  0.1209276487 -0.1206197709  0.0000000000  0.0681861593  0.0267815521
+ 12.0159547055 -0.0601908412  0.0657386179  0.0000000000  0.0365436388 -0.0342105574  0.0000000000  0.0148070544  0.0000000000
+
+# basis set size: 3 s-functions, 3 p-functions, 2 d-functions, 1 f-function, making in total 29 basis functions
+ O  aug-DZVP-MOLOPT-GTH-tier-2
+
+ 2 0 3 7 3 3 2 1
+ 0.0467609183 -0.0002559458  0.0038258496  0.0335786214  0.0097261106  0.0324989794 -0.0199617103 -0.0057717366  0.0232662614  0.0458873427
+ 0.1429773309  0.0927158336  0.3872014586  0.8215226852  0.1730398693  0.7174659197 -0.3609199730  0.3183468344  0.3075339470  0.0005997526
+ 0.3523162465  0.4503537826  0.1867600067  2.0582997838  0.2947086452  0.4848483764 -0.2462067404  0.3076561142  0.5002719744 -0.0430123941
+ 0.8323815756  0.4629644850 -0.5726706662 -0.4466820640  0.3526399103 -0.4736748584 -0.0389264760  1.0633441895  1.5135238627  0.0999834231
+ 2.0483980399  0.1181758894 -0.0537324064  0.0000000000  0.2510936703 -0.2137194646  0.0000000000  0.2905764992  0.0880356339 -0.1828226061
+ 5.1081502874 -0.1295979233  0.1108859022  0.0000000000  0.1209276487 -0.1206197709  0.0000000000  0.0681861593  0.0267815521  0.0000000000
+12.0159547055 -0.0601908412  0.0657386179  0.0000000000  0.0365436388 -0.0342105574  0.0000000000  0.0148070544  0.0000000000  0.0000000000
+
+
+#aug-cc-pDVZ:
+
+#----------------------------------------------------------------------
+# Basis Set Exchange
+# Version 0.11
+# https://www.basissetexchange.org
+#----------------------------------------------------------------------
+#   Basis set: aug-cc-pVDZ
+# Description: aug-cc-pVDZ
+#        Role: orbital
+#     Version: 1  (Data from ccRepo/Grant Hill)
+#----------------------------------------------------------------------
+
+
+# Hydrogen aug-cc-pVDZ (5s,2p) -> [3s,2p]
+H aug-cc-pVDZ
+    4
+1 0 0 4 2
+      1.301000E+01           1.968500E-02           0.000000E+00
+      1.962000E+00           1.379770E-01           0.000000E+00
+      4.446000E-01           4.781480E-01           0.000000E+00
+      1.220000E-01           5.012400E-01           1.000000E+00
+1 0 0 1 1
+      0.0297400              1.0000000
+1 1 1 1 1
+      7.270000E-01           1.0000000
+1 1 1 1 1
+      0.1410000              1.0000000
+
+# Carbon aug-cc-pVDZ (10s,5p,2d) -> [4s,3p,2d]
+C aug-cc-pVDZ
+    6
+1 0 0 9 3
+      6.665000E+03           6.920000E-04          -1.460000E-04           0.000000E+00
+      1.000000E+03           5.329000E-03          -1.154000E-03           0.000000E+00
+      2.280000E+02           2.707700E-02          -5.725000E-03           0.000000E+00
+      6.471000E+01           1.017180E-01          -2.331200E-02           0.000000E+00
+      2.106000E+01           2.747400E-01          -6.395500E-02           0.000000E+00
+      7.495000E+00           4.485640E-01          -1.499810E-01           0.000000E+00
+      2.797000E+00           2.850740E-01          -1.272620E-01           0.000000E+00
+      5.215000E-01           1.520400E-02           5.445290E-01           0.000000E+00
+      1.596000E-01          -3.191000E-03           5.804960E-01           1.000000E+00
+1 0 0 1 1
+      0.0469000              1.0000000
+1 1 1 4 2
+      9.439000E+00           3.810900E-02           0.000000E+00
+      2.002000E+00           2.094800E-01           0.000000E+00
+      5.456000E-01           5.085570E-01           0.000000E+00
+      1.517000E-01           4.688420E-01           1.000000E+00
+1 1 1 1 1
+      0.0404100              1.0000000
+1 2 2 1 1
+      5.500000E-01           1.0000000
+1 2 2 1 1
+      0.1510000              1.0000000
+
+# Nitrogen aug-cc-pVDZ (10s,5p,2d) -> [4s,3p,2d]
+N aug-cc-pVDZ
+    6
+1 0 0 9 3
+      9.046000E+03           7.000000E-04          -1.530000E-04           0.000000E+00
+      1.357000E+03           5.389000E-03          -1.208000E-03           0.000000E+00
+      3.093000E+02           2.740600E-02          -5.992000E-03           0.000000E+00
+      8.773000E+01           1.032070E-01          -2.454400E-02           0.000000E+00
+      2.856000E+01           2.787230E-01          -6.745900E-02           0.000000E+00
+      1.021000E+01           4.485400E-01          -1.580780E-01           0.000000E+00
+      3.838000E+00           2.782380E-01          -1.218310E-01           0.000000E+00
+      7.466000E-01           1.544000E-02           5.490030E-01           0.000000E+00
+      2.248000E-01          -2.864000E-03           5.788150E-01           1.000000E+00
+1 0 0 1 1
+      0.0612400              1.0000000
+1 1 1 4 2
+      1.355000E+01           3.991900E-02           0.000000E+00
+      2.917000E+00           2.171690E-01           0.000000E+00
+      7.973000E-01           5.103190E-01           0.000000E+00
+      2.185000E-01           4.622140E-01           1.000000E+00
+1 1 1 1 1
+      0.0561100              1.0000000
+1 2 2 1 1
+      8.170000E-01           1.0000000
+1 2 2 1 1
+      0.2300000              1.0000000
+
+# Oxygen aug-cc-pVDZ (10s,5p,2d) -> [4s,3p,2d]
+O aug-cc-pVDZ
+    6
+1 0 0 9 3
+      1.172000E+04           7.100000E-04          -1.600000E-04           0.000000E+00
+      1.759000E+03           5.470000E-03          -1.263000E-03           0.000000E+00
+      4.008000E+02           2.783700E-02          -6.267000E-03           0.000000E+00
+      1.137000E+02           1.048000E-01          -2.571600E-02           0.000000E+00
+      3.703000E+01           2.830620E-01          -7.092400E-02           0.000000E+00
+      1.327000E+01           4.487190E-01          -1.654110E-01           0.000000E+00
+      5.025000E+00           2.709520E-01          -1.169550E-01           0.000000E+00
+      1.013000E+00           1.545800E-02           5.573680E-01           0.000000E+00
+      3.023000E-01          -2.585000E-03           5.727590E-01           1.000000E+00
+1 0 0 1 1
+      0.0789600              1.0000000
+1 1 1 4 2
+      1.770000E+01           4.301800E-02           0.000000E+00
+      3.854000E+00           2.289130E-01           0.000000E+00
+      1.046000E+00           5.087280E-01           0.000000E+00
+      2.753000E-01           4.605310E-01           1.000000E+00
+1 1 1 1 1
+      0.0685600              1.0000000
+1 2 2 1 1
+      1.185000E+00           1.0000000
+1 2 2 1 1
+      0.3320000              1.0000000
+
+#----------------------------------------------------------------------
+# Basis Set Exchange
+# Version 0.11
+# https://www.basissetexchange.org
+#----------------------------------------------------------------------
+#   Basis set: aug-cc-pVDZ-RIFIT
+# Description: RI Fitting basis for use with aug-cc-pVDZ
+#        Role: rifit
+#     Version: 1  (Data from Turbomole 7.3)
+#----------------------------------------------------------------------
+
+
+# Hydrogen aug-cc-pVDZ-RIFIT (4s,3p,2d) -> [4s,3p,2d]
+H aug-cc-pVDZ-RIFIT
+    9
+1 0 0 1 1
+      5.11588952             1.0000000
+1 0 0 1 1
+      1.14296528             1.0000000
+1 0 0 1 1
+      0.29166153             1.0000000
+1 0 0 1 1
+      0.11272018383          1.0000000
+1 1 1 1 1
+      1.91496403             1.0000000
+1 1 1 1 1
+      0.98640124             1.0000000
+1 1 1 1 1
+      0.28586021512          1.0000000
+1 2 2 1 1
+      1.17208347             1.0000000
+1 2 2 1 1
+      0.30382076276          1.0000000
+
+# Carbon aug-cc-pVDZ-RIFIT (8s,6p,5d,3f) -> [8s,6p,5d,3f]
+C aug-cc-pVDZ-RIFIT
+    22
+1 0 0 1 1
+     62.7453                 1.0000000
+1 0 0 1 1
+     13.8045                 1.0000000
+1 0 0 1 1
+      4.77277                1.0000000
+1 0 0 1 1
+      1.51333                1.0000000
+1 0 0 1 1
+      0.782697               1.0000000
+1 0 0 1 1
+      0.409072               1.0000000
+1 0 0 1 1
+      0.206796               1.0000000
+1 0 0 1 1
+      0.73830101918E-01      1.0000000
+1 1 1 1 1
+     20.8851                 1.0000000
+1 1 1 1 1
+      6.00523                1.0000000
+1 1 1 1 1
+      1.7206                 1.0000000
+1 1 1 1 1
+      0.754465               1.0000000
+1 1 1 1 1
+      0.321667               1.0000000
+1 1 1 1 1
+      0.12595256654          1.0000000
+1 2 2 1 1
+     10.1715                 1.0000000
+1 2 2 1 1
+      2.67844                1.0000000
+1 2 2 1 1
+      0.922515               1.0000000
+1 2 2 1 1
+      0.340842               1.0000000
+1 2 2 1 1
+      0.11021124893          1.0000000
+1 3 3 1 1
+      2.74293                1.0000000
+1 3 3 1 1
+      0.895756               1.0000000
+1 3 3 1 1
+      0.31714624829          1.0000000
+
+# Nitrogen aug-cc-pVDZ-RIFIT (8s,6p,5d,3f) -> [8s,6p,5d,3f]
+N aug-cc-pVDZ-RIFIT
+    22
+1 0 0 1 1
+     87.6864                 1.0000000
+1 0 0 1 1
+     20.4679                 1.0000000
+1 0 0 1 1
+      7.62436                1.0000000
+1 0 0 1 1
+      2.34426                1.0000000
+1 0 0 1 1
+      1.12324                1.0000000
+1 0 0 1 1
+      0.723539               1.0000000
+1 0 0 1 1
+      0.327261               1.0000000
+1 0 0 1 1
+      0.10361182811          1.0000000
+1 1 1 1 1
+     29.2373                 1.0000000
+1 1 1 1 1
+      8.55299                1.0000000
+1 1 1 1 1
+      2.53364                1.0000000
+1 1 1 1 1
+      1.09461                1.0000000
+1 1 1 1 1
+      0.461104               1.0000000
+1 1 1 1 1
+      0.16968199389          1.0000000
+1 2 2 1 1
+     12.3278                 1.0000000
+1 2 2 1 1
+      3.42816                1.0000000
+1 2 2 1 1
+      1.28537                1.0000000
+1 2 2 1 1
+      0.47785                1.0000000
+1 2 2 1 1
+      0.13349941560          1.0000000
+1 3 3 1 1
+      3.40118                1.0000000
+1 3 3 1 1
+      1.33473                1.0000000
+1 3 3 1 1
+      0.41976031664          1.0000000
+
+# Oxygen aug-cc-pVDZ-RIFIT (8s,6p,5d,3f) -> [8s,6p,5d,3f]
+O aug-cc-pVDZ-RIFIT
+    22
+1 0 0 1 1
+    109.461                  1.0000000
+1 0 0 1 1
+     25.5780                 1.0000000
+1 0 0 1 1
+      9.55148                1.0000000
+1 0 0 1 1
+      2.93960                1.0000000
+1 0 0 1 1
+      1.39638                1.0000000
+1 0 0 1 1
+       .905061               1.0000000
+1 0 0 1 1
+       .421376               1.0000000
+1 0 0 1 1
+      0.12179209480          1.0000000
+1 1 1 1 1
+     36.1292                 1.0000000
+1 1 1 1 1
+     10.8817                 1.0000000
+1 1 1 1 1
+      3.20594                1.0000000
+1 1 1 1 1
+      1.40387                1.0000000
+1 1 1 1 1
+       .612763               1.0000000
+1 1 1 1 1
+      0.21144297178          1.0000000
+1 2 2 1 1
+     15.2511                 1.0000000
+1 2 2 1 1
+      4.52087                1.0000000
+1 2 2 1 1
+      1.81221                1.0000000
+1 2 2 1 1
+       .592201               1.0000000
+1 2 2 1 1
+      0.16644793680          1.0000000
+1 3 3 1 1
+      4.22194                1.0000000
+1 3 3 1 1
+      1.79021                1.0000000
+1 3 3 1 1
+      0.58460963107          1.0000000
+
+
+      
