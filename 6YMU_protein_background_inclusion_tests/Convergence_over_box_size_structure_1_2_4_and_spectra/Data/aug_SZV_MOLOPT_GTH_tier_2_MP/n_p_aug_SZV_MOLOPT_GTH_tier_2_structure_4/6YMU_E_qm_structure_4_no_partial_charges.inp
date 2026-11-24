@@ -82,7 +82,7 @@
       &CENTER_COORDINATES
         CENTER_POINT  0.3944844999999999 5.331212 -6.9050195
       &END
-      COORD_FILE_NAME 6YMU_E_qm_add_structure_4box_length_10_dis_to_counter_5_vacuum_3_only_monopole_zero.XYZ
+      COORD_FILE_NAME 6YMU_E_qm_structure_4_no_partial_charges.XYZ
       COORD_FILE_FORMAT XYZ
     &END TOPOLOGY
     &KIND H
